@@ -1,0 +1,12 @@
+SQL (Structured Query Language) is a standard programming language used to manage and manipulate databases.
+
+In simple terms:
+ SQL is used to store, retrieve, update, and delete data in a database.
+
+Key points:
+ It works with relational databases (like MySQL, Oracle, SQL Server).
+ It allows users to query data using commands like:
+  - SELECT (retrieve data)
+  - INSERT (add data)
+  - UPDATE (modify data)
+  - DELETE (remove data)
