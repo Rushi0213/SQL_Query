@@ -1,0 +1,8 @@
+**Show Data**
+   -SELECT * FROM Employee;
+
+** Select Specific Column**
+   -SELECT Name, Age FROM Employee;
+
+ **Where Condition**
+  -SELECT * FROM Employee WHERE Age > 22;
