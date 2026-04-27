@@ -2,4 +2,4 @@
    - Query:-CREATE DATABASE Company;
 
   **Use Database**:-
-    -USE Company;
+    - Query:-USE Company;
