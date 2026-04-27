@@ -1,0 +1,17 @@
+:- What is Database?
+
+Database is a collection of data stored in tables.
+
+Example:
+
+Id	Name	Age
+1	Rahul	22
+2	Amit	25
+
+
+:- What is Table?
+
+Table stores data in rows and columns.
+
+Row = Record
+Column = Field
