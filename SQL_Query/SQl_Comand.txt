@@ -1,0 +1,18 @@
+1) SQL Commands Types
+  i) DDL (Structure Commands)
+       CREATE
+       ALTER
+        DROP
+       TRUNCATE
+
+  ii) DML (Data Commands)
+        INSERT
+        UPDATE
+        DELETE
+   
+   iii) DQL
+        SELECT
+
+    iv) TCL
+         COMMIT
+        ROLLBACK
