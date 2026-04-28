@@ -1,0 +1,22 @@
+**Data Types in SQL**
+
+Used to define type of data.
+
+Numeric:
+-INT
+-BIGINT
+-DECIMAL
+-FLOAT
+  
+Character:
+-CHAR
+-VARCHAR
+-TEXT
+  
+Date/Time:
+-DATE
+-TIME
+-DATETIME
+  
+Boolean:
+-BIT / BOOLEAN
