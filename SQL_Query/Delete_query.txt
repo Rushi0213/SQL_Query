@@ -1,0 +1,151 @@
+DELETE command is used to remove existing rows(records) from a table.
+
+Basic Syntax
+DELETE FROM table_name
+WHERE condition;
+Example Table
+Student
+--------------------------------
+Id | Name  | Age | City
+1  | Rahul | 22  | Pune
+2  | Amit  | 21  | Mumbai
+3  | Neha  | 20  | Delhi
+4  | Priya | 23  | Nashik
+1. Delete Single Row
+DELETE FROM Student
+WHERE Id = 1;
+Explanation:
+
+Deletes record where Id = 1.
+
+2. Delete Multiple Rows
+DELETE FROM Student
+WHERE City = 'Pune';
+Explanation:
+
+Deletes all students from Pune.
+
+3. Delete All Rows
+DELETE FROM Student;
+Explanation:
+
+Deletes every record from table.
+
+⚠ Table remains, only data removed.
+
+4. Delete Using AND Condition
+DELETE FROM Student
+WHERE Age = 20 AND Name = 'Neha';
+Explanation:
+
+Deletes row matching both conditions.
+
+5. Delete Using OR Condition
+DELETE FROM Student
+WHERE Name = 'Rahul' OR Name = 'Amit';
+Explanation:
+
+Deletes Rahul and Amit records.
+
+6. Delete Using LIKE
+DELETE FROM Student
+WHERE Name LIKE 'P%';
+Explanation:
+
+Deletes names starting with P.
+
+7. Delete Using IN
+DELETE FROM Student
+WHERE Id IN (2,3,4);
+Explanation:
+
+Deletes multiple selected Ids.
+
+8. Delete Using BETWEEN
+DELETE FROM Student
+WHERE Age BETWEEN 20 AND 22;
+Explanation:
+
+Deletes students whose age is between 20 and 22.
+
+9. Delete TOP Rows (SQL Server)
+DELETE TOP (2) FROM Student;
+Explanation:
+
+Deletes first 2 rows.
+
+10. Delete Using Subquery
+DELETE FROM Student
+WHERE Id IN
+(
+   SELECT Id FROM Student
+   WHERE Age > 21
+);
+Explanation:
+
+Deletes students age greater than 21.
+
+11. Delete Duplicate Records
+DELETE FROM Employee
+WHERE Id NOT IN
+(
+   SELECT MIN(Id)
+   FROM Employee
+   GROUP BY Name
+);
+Explanation:
+
+Keeps one row, deletes duplicates.
+
+12. Delete with Join (SQL Server)
+DELETE s
+FROM Student s
+JOIN CityMaster c
+ON s.Id = c.Id
+WHERE c.CityName = 'Delhi';
+Explanation:
+
+Deletes rows using another table.
+
+Important Rule
+
+Always use WHERE when deleting selected rows.
+
+❌ Wrong
+DELETE FROM Student;
+
+(Deletes all rows)
+
+✅ Correct
+DELETE FROM Student
+WHERE Id = 2;
+DELETE vs TRUNCATE
+DELETE
+DELETE FROM Student;
+Deletes row by row
+Can use WHERE
+Can rollback
+TRUNCATE
+TRUNCATE TABLE Student;
+Deletes all rows fast
+Cannot use WHERE
+Resets identity
+Interview Answer
+
+What is DELETE command?
+
+DELETE command is used to remove existing records from a table.
+
+Most Used Query
+DELETE FROM Employee
+WHERE Id = 5;
+Practice Example
+CREATE TABLE Employee
+(
+Id INT,
+Name VARCHAR(30),
+Salary INT
+);
+
+DELETE FROM Employee
+WHERE Id = 1;
