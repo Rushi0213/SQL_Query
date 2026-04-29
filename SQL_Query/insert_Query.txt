@@ -1,0 +1,141 @@
+INSERT command is used to add new records (rows) into a table.
+
+Basic Syntax
+INSERT INTO table_name (column1, column2, column3)
+VALUES (value1, value2, value3);
+Example Table
+Student
+--------------------------------
+Id | Name | Age | City
+1. Insert Full Row (Single Record)
+INSERT INTO Student (Id, Name, Age, City)
+VALUES (1, 'Rahul', 22, 'Pune');
+Explanation:
+
+Adds one student record.
+
+2. Insert Without Column Names
+INSERT INTO Student
+VALUES (2, 'Amit', 21, 'Mumbai');
+Explanation:
+
+Insert values in table column order.
+⚠ Use only when all columns included.
+
+3. Insert Multiple Rows
+INSERT INTO Student (Id, Name, Age, City)
+VALUES 
+(3, 'Neha', 20, 'Delhi'),
+(4, 'Priya', 23, 'Nashik'),
+(5, 'Rohan', 24, 'Pune');
+Explanation:
+
+Adds many records in one query.
+
+4. Insert Selected Columns Only
+INSERT INTO Student (Id, Name)
+VALUES (6, 'Karan');
+Explanation:
+
+Only Id and Name inserted. Other columns become NULL/default.
+
+5. Insert NULL Value
+INSERT INTO Student (Id, Name, Age, City)
+VALUES (7, 'Meena', NULL, 'Pune');
+Explanation:
+
+Age value empty.
+
+6. Insert Default Value
+INSERT INTO Student (Id, Name)
+VALUES (8, 'Sita');
+Explanation:
+
+If Age/City has default value, SQL uses it.
+
+7. Insert from Another Table
+INSERT INTO StudentBackup (Id, Name, Age, City)
+SELECT Id, Name, Age, City
+FROM Student;
+Explanation:
+
+Copies data from one table to another.
+
+8. Insert Specific Data from Another Table
+INSERT INTO StudentBackup (Id, Name)
+SELECT Id, Name
+FROM Student
+WHERE City = 'Pune';
+Explanation:
+
+Copies only Pune students.
+
+9. Insert with Identity Column
+
+If Id is auto increment:
+
+INSERT INTO Student (Name, Age, City)
+VALUES ('Anil', 25, 'Mumbai');
+Explanation:
+
+No need to insert Id.
+
+10. Insert Current Date
+INSERT INTO Orders (OrderName, OrderDate)
+VALUES ('Laptop', GETDATE());
+Explanation:
+
+Adds today date and time.
+
+11. Insert Using Variables
+DECLARE @name VARCHAR(20) = 'Raj';
+
+INSERT INTO Student (Id, Name)
+VALUES (9, @name);
+Explanation:
+
+Insert using variable.
+
+12. Insert with Condition (Using SELECT)
+INSERT INTO StudentBackup
+SELECT *
+FROM Student
+WHERE Age > 22;
+Explanation:
+
+Only students age above 22 inserted.
+
+Important Rules
+String values use single quotes:
+'Rahul'
+Number values no quotes:
+22
+Date values:
+'2026-04-29'
+Common Errors
+❌ Wrong
+INSERT INTO table Student ...
+✅ Correct
+INSERT INTO Student ...
+Interview Answer
+
+What is INSERT command?
+
+INSERT command is used to add new rows into a table in SQL.
+
+Most Used Query
+INSERT INTO Employee (Name, Salary, City)
+VALUES ('Rushikesh', 25000, 'Pune');
+Practice Task
+
+Create table and insert:
+
+CREATE TABLE Employee
+(
+Id INT,
+Name VARCHAR(30),
+Salary INT
+);
+
+INSERT INTO Employee
+VALUES (1, 'Ram', 20000);
