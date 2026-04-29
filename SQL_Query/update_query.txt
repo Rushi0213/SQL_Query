@@ -1,0 +1,166 @@
+UPDATE command is used to modify existing records in a table.
+
+Basic Syntax
+UPDATE table_name
+SET column1 = value1, column2 = value2
+WHERE condition;
+Example Table
+Student
+--------------------------------
+Id | Name  | Age | City
+1  | Rahul | 22  | Pune
+2  | Amit  | 21  | Mumbai
+3  | Neha  | 20  | Delhi
+1. Update Single Column
+UPDATE Student
+SET City = 'Nashik'
+WHERE Id = 1;
+Explanation:
+
+Changes Rahul's city from Pune to Nashik.
+
+2. Update Multiple Columns
+UPDATE Student
+SET Name = 'Rahul Sharma',
+    Age = 23
+WHERE Id = 1;
+Explanation:
+
+Updates Name and Age together.
+
+3. Update All Rows
+UPDATE Student
+SET City = 'Pune';
+Explanation:
+
+Changes city of every student to Pune.
+
+⚠ Use carefully.
+
+4. Update Using WHERE Condition
+UPDATE Student
+SET Age = 25
+WHERE Name = 'Amit';
+Explanation:
+
+Only Amit's age becomes 25.
+
+5. Update with AND Condition
+UPDATE Student
+SET City = 'Nagpur'
+WHERE Age = 20 AND Name = 'Neha';
+Explanation:
+
+Updates row matching both conditions.
+
+6. Update with OR Condition
+UPDATE Student
+SET City = 'Mumbai'
+WHERE Name = 'Rahul' OR Name = 'Amit';
+Explanation:
+
+Updates Rahul and Amit.
+
+7. Update Numeric Value Increase
+UPDATE Employee
+SET Salary = Salary + 5000
+WHERE Id = 1;
+Explanation:
+
+Adds 5000 to current salary.
+
+8. Update Numeric Value Decrease
+UPDATE Employee
+SET Salary = Salary - 2000
+WHERE Id = 2;
+Explanation:
+
+Deducts 2000 salary.
+
+9. Update NULL Value
+UPDATE Student
+SET City = NULL
+WHERE Id = 3;
+Explanation:
+
+City becomes empty (NULL).
+
+10. Update Using LIKE
+UPDATE Student
+SET City = 'Pune'
+WHERE Name LIKE 'R%';
+Explanation:
+
+Names starting with R will update.
+
+11. Update Top Rows (SQL Server)
+UPDATE TOP (2) Student
+SET City = 'Satara';
+Explanation:
+
+Updates first 2 rows only.
+
+12. Update Using Subquery
+UPDATE Student
+SET City = 'Pune'
+WHERE Id IN (SELECT Id FROM Student WHERE Age > 21);
+Explanation:
+
+Students with age above 21 get Pune.
+
+13. Update with CASE
+UPDATE Student
+SET City =
+CASE
+   WHEN Id = 1 THEN 'Pune'
+   WHEN Id = 2 THEN 'Mumbai'
+   ELSE 'Delhi'
+END;
+Explanation:
+
+Different values for different rows.
+
+14. Update Using Join
+UPDATE s
+SET s.City = c.CityName
+FROM Student s
+JOIN CityMaster c ON s.Id = c.Id;
+Explanation:
+
+Updates Student table using another table.
+
+Important Rule
+
+Always use WHERE if updating selected rows.
+
+❌ Wrong
+UPDATE Student
+SET Age = 50;
+
+(Changes all rows)
+
+✅ Correct
+UPDATE Student
+SET Age = 50
+WHERE Id = 1;
+Interview Answer
+
+What is UPDATE command?
+
+UPDATE command is used to modify existing records in a table.
+
+Most Used Query
+UPDATE Employee
+SET Salary = 30000
+WHERE Id = 5;
+Practice Example
+CREATE TABLE Employee
+(
+Id INT,
+Name VARCHAR(30),
+Salary INT
+);
+
+UPDATE Employee
+SET Salary = 25000
+WHERE Id = 1;
