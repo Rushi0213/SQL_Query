@@ -1,0 +1,153 @@
+DROP SQL command is used to remove database objects permanently such as table, database, view, procedure, index, schema, trigger etc.
+
+⚠️ Important: DROP deletes both structure + data. After drop, object is removed completely.
+
+1. DROP TABLE
+
+Used to delete a table completely.
+
+Syntax:
+DROP TABLE table_name;
+Example:
+DROP TABLE Employee;
+Result:
+Employee table deleted
+All rows deleted
+Columns deleted
+Constraints deleted
+
+2. DROP DATABASE
+
+Used to delete full database.
+
+Syntax:
+DROP DATABASE database_name;
+Example:
+DROP DATABASE CompanyDB;
+Result:
+Full database removed
+All tables, data, procedures removed
+
+3. DROP VIEW
+
+Used to remove a view.
+
+Syntax:
+DROP VIEW view_name;
+Example:
+DROP VIEW EmployeeView;
+
+
+4. DROP PROCEDURE
+
+Used to delete stored procedure.
+
+Syntax:
+DROP PROCEDURE procedure_name;
+Example:
+DROP PROCEDURE GetEmployeeData;
+
+
+5. DROP FUNCTION
+
+Used to delete function.
+
+Syntax:
+DROP FUNCTION function_name;
+Example:
+DROP FUNCTION CalculateSalary;
+
+
+
+6. DROP INDEX
+
+Used to remove index.
+
+Syntax (SQL Server):
+DROP INDEX table_name.index_name;
+Example:
+DROP INDEX Employee.IX_Name;
+
+
+7. DROP TRIGGER
+
+Used to delete trigger.
+
+Syntax:
+DROP TRIGGER trigger_name;
+Example:
+DROP TRIGGER trg_InsertEmployee;
+
+
+8. DROP SCHEMA
+
+Used to remove schema.
+
+Syntax:
+DROP SCHEMA schema_name;
+Example:
+DROP SCHEMA Sales;
+
+
+9. DROP COLUMN (Using ALTER)
+
+To remove column from table.
+
+Syntax:
+ALTER TABLE table_name
+DROP COLUMN column_name;
+Example:
+ALTER TABLE Employee
+DROP COLUMN Salary;
+Example Full Table
+
+Before:
+
+ID	Name	Salary
+1	Amit	20000
+
+Query:
+
+DROP TABLE Employee;
+
+After:
+❌ Table not exists
+
+Difference: DROP vs DELETE vs TRUNCATE
+
+Command 	Deletes Data	   Deletes Structure
+DELETE	    Yes             	No
+TRUNCATE	  Yes              	No
+DROP	      Yes               Yes
+
+
+Important Points:
+1. Permanent Delete
+
+Dropped object removed permanently.
+
+2. No Rollback (mostly)
+
+Usually cannot recover easily.
+
+3. Use Carefully
+
+Especially DROP DATABASE.
+
+Interview Answer:
+
+What is DROP command?
+DROP is a DDL command used to permanently remove database objects like table, database, view, procedure etc.
+
+Safe Query Example
+DROP TABLE IF EXISTS Employee;
+
+This avoids error if table not exists.
+
+Most Used Drop Queries
+DROP TABLE Student;
+DROP DATABASE SchoolDB;
+DROP VIEW StudentView;
+DROP PROCEDURE GetData;
+DROP FUNCTION GetAge;
+DROP TRIGGER trg_insert;
