@@ -1,0 +1,82 @@
+TRUNCATE SQL command is used to delete all records (rows) from a table quickly, but the table structure remains same.
+
+Syntax:
+TRUNCATE TABLE table_name;
+Example:
+
+If table name is Employee
+
+TRUNCATE TABLE Employee;
+
+This will remove all data from Employee table.
+
+Explanation of TRUNCATE:
+Before TRUNCATE
+ID	Name	Salary
+1	Amit	20000
+2	Rahul	25000
+3	Neha	30000
+
+Query:
+TRUNCATE TABLE Employee;
+
+After TRUNCATE:-
+ID	Name	Salary
+No Data Found	
+
+Important Points:
+1. Deletes all rows
+It removes all records from table.
+
+2. Faster than DELETE
+Because it does not delete row by row.
+
+3. Cannot use WHERE condition
+
+❌ Wrong:
+TRUNCATE TABLE Employee WHERE ID=1;
+
+4. Resets Identity
+If identity column exists, it starts again from 1.
+
+Example:
+Before:
+
+ID = 1,2,3
+After Truncate and Insert:
+ID = 1
+
+5. Structure remains same
+Columns, datatype, constraints remain same.
+
+
+Difference Between DELETE and TRUNCATE
+DELETE	                         TRUNCATE
+Deletes selected/all rows     	Deletes all rows only
+WHERE allowed                  	WHERE not allowed
+Slower                         	Faster
+Identity not reset            	Identity reset
+Can rollback (in transaction)	   Depends on DB
+
+
+More Examples:
+Student Table
+TRUNCATE TABLE Student;
+
+Customer Table
+TRUNCATE TABLE Customer;
+
+Product Table
+TRUNCATE TABLE Product;
+
+
+Interview Answer:
+
+What is TRUNCATE?
+TRUNCATE is a DDL command used to remove all rows from a table quickly without deleting table structure.
+
+Note:
+
+If table has Foreign Key relationship, truncate may give error.
+
+Cannot truncate table because it is referenced by FOREIGN KEY.
