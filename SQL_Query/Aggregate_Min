@@ -1,0 +1,197 @@
+MIN() is an aggregate function used to find the smallest / lowest value from a column.
+
+It returns one minimum value from many rows.
+
+Example Table: Employee
+
+Id   Name  	City   	Salary   	Age
+1    Ram  	Pune   	25000    	25
+2  	Shyam 	Mumbai	30000   	30
+3 	Amit  	Pune	  20000	    22
+4  	Neha  	Delhi 	28000	    27
+5 	Ravi   	Pune  	26000	    24
+
+
+1. MIN(column_name)
+
+Find smallest value from a column.
+
+SELECT MIN(Salary) FROM Employee;
+
+Output:
+20000
+
+Explanation:
+Lowest salary is 20000
+
+
+
+2. MIN with Alias Name
+SELECT MIN(Salary) AS LowestSalary
+FROM Employee;
+
+
+Output:
+LowestSalary
+20000
+
+Explanation:
+Custom column name shown.
+
+
+
+3. MIN with WHERE
+
+Find minimum value based on condition.
+
+SELECT MIN(Salary)
+FROM Employee
+WHERE City = 'Pune';
+
+Output:
+20000
+
+
+Explanation:
+Pune salaries:
+25000, 20000, 26000
+Lowest = 20000
+
+
+
+4. MIN with Multiple Condition
+SELECT MIN(Salary)
+FROM Employee
+WHERE Age > 23;
+
+Output:
+25000
+
+Explanation:
+Eligible rows:
+25000, 30000, 28000, 26000
+Lowest = 25000
+
+
+
+5. MIN with GROUP BY
+
+Find minimum value in each group.
+
+SELECT City, MIN(Salary) AS LowestSalary
+FROM Employee
+GROUP BY City;
+
+Output:
+City	LowestSalary
+Pune	  20000
+Mumbai	30000
+Delhi  	28000
+
+Explanation:
+City-wise lowest salary.
+
+
+
+6. MIN with HAVING
+
+Filter grouped minimum values.
+
+SELECT City, MIN(Salary) AS LowestSalary
+FROM Employee
+GROUP BY City
+HAVING MIN(Salary) > 22000;
+
+Output:
+City	 LowestSalary
+Mumbai	30000
+Delhi	   28000
+
+Explanation:
+Only cities with lowest salary greater than 22000.
+
+
+
+7. MIN on Age Column
+SELECT MIN(Age) FROM Employee;
+
+Output:
+22
+
+Explanation:
+Youngest employee age is 22
+
+
+
+8. MIN with Date Column
+
+If table has joining date:
+
+SELECT MIN(JoiningDate) FROM Employee;
+
+Explanation:
+Returns oldest / earliest joining date.
+
+
+
+9. MIN Ignores NULL Values
+
+If some salary values are NULL:
+
+Salary
+25000
+NULL
+20000
+SELECT MIN(Salary) FROM Employee;
+
+Output:
+20000
+
+Explanation:
+NULL values are ignored.
+
+
+
+10. MIN with Subquery
+
+Employee having minimum salary:
+
+SELECT Name, Salary
+FROM Employee
+WHERE Salary = (SELECT MIN(Salary) FROM Employee);
+
+Output:
+Name	Salary
+Amit	20000
+
+Summary Table
+Query Type	Meaning
+MIN(column)	Lowest value
+MIN + WHERE	Conditional minimum
+MIN + GROUP BY	Group-wise minimum
+MIN + HAVING	Filter grouped minimum
+MIN(Date)	Earliest date
+MIN(Subquery)	Row having minimum value
+Interview Question Answer
+What is MIN() in SQL?
+
+MIN() is an aggregate function used to return the smallest value from a column.
+
+Does MIN ignore NULL values?
+
+Yes, NULL values are ignored.
+
+Can MIN be used with GROUP BY?
+
+Yes, to find minimum value for each group.
+
+Memory Trick
+
+MIN = Minimum = Lowest = Smallest
+
+Real-Life Examples
+Lowest salary employee
+Minimum marks in class
+Cheapest product price
+Youngest student age
+Earliest joining date
