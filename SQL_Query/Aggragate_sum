@@ -1,0 +1,190 @@
+SUM() is an aggregate function used to calculate the total of numeric values in a column.
+
+It adds numbers from multiple rows and returns one result.
+
+Example Table: Employee
+
+Id	   Name  	City  	Salary
+1	     Ram   	Pune  	25000
+2	    Shyam	  Mumbai	30000
+3	    Amit   	Pune	  20000
+4	    Neha   	Delhi	  28000
+5   	Ravi   	Pune  	26000
+
+
+1. SUM(column_name)
+
+Used to calculate total of one numeric column.
+
+SELECT SUM(Salary) FROM Employee;
+Output:
+129000
+Explanation:
+
+25000 + 30000 + 20000 + 28000 + 26000 = 129000
+
+
+
+2. SUM with WHERE
+
+Used to calculate total based on condition.
+
+SELECT SUM(Salary) FROM Employee
+WHERE City = 'Pune';
+Output:
+71000
+Explanation:
+
+Pune salaries:
+
+25000 + 20000 + 26000 = 71000
+
+
+
+3. SUM with Multiple Conditions
+
+SELECT SUM(Salary) FROM Employee
+WHERE Salary > 25000;
+Output:
+84000
+Explanation:
+
+30000 + 28000 + 26000 = 84000
+
+
+
+4. SUM with GROUP BY
+
+Used to show total for each group.
+
+SELECT City, SUM(Salary) AS TotalSalary
+FROM Employee
+GROUP BY City;
+
+Output:
+City   	TotalSalary
+Pune	    71000
+Mumbai	  30000
+Delhi    	28000
+
+Explanation:
+
+City-wise salary total.
+
+
+
+
+5. SUM with HAVING
+
+Used to filter grouped totals.
+
+SELECT City, SUM(Salary) AS TotalSalary
+FROM Employee
+GROUP BY City
+HAVING SUM(Salary) > 50000;
+Output:
+City	TotalSalary
+Pune	71000
+Explanation:
+
+Only Pune total salary is greater than 50000.
+
+
+
+
+6. SUM with Alias Name
+SELECT SUM(Salary) AS TotalSalary
+FROM Employee;
+Output:
+TotalSalary
+129000
+Explanation:
+
+Alias gives custom column name.
+
+
+
+
+7. SUM of Expression
+
+Used to sum calculated values.
+
+SELECT SUM(Salary + 1000) FROM Employee;
+Output:
+134000
+Explanation:
+
+Each employee gets +1000 bonus, then total is calculated.
+
+
+
+
+8. SUM with NULL Values
+
+If any value is NULL, SQL ignores it.
+
+Example:
+
+Salary
+25000
+NULL
+30000
+
+Then:
+
+SELECT SUM(Salary) FROM Employee;
+
+Output:
+
+55000
+
+
+
+
+9. SUM with JOIN (Important)
+SELECT DepartmentId, SUM(Salary)
+FROM Employee
+GROUP BY DepartmentId;
+Explanation:
+
+Department-wise total salary.
+
+10. SUM with DISTINCT
+
+Adds only unique values.
+
+SELECT SUM(DISTINCT Salary) FROM Employee;
+Explanation:
+
+Duplicate salary values are counted once.
+
+Summary Table
+Query Type	Meaning
+SUM(column)	Total of column
+SUM + WHERE	Conditional total
+SUM + GROUP BY	Group total
+SUM + HAVING	Filter grouped total
+SUM(DISTINCT)	Total of unique values
+SUM(expression)	Total of calculated values
+Interview Question Answer
+What is SUM() in SQL?
+
+SUM() is an aggregate function used to calculate the total of numeric values in a column.
+
+Does SUM ignore NULL?
+
+Yes, SUM() ignores NULL values.
+
+Can SUM be used with GROUP BY?
+
+Yes, to calculate totals group-wise.
+
+Memory Trick
+
+SUM = Add all values
+
+Real-Life Examples
+Total employee salary
+Total monthly sales
+Total hospital bill amount
+Total marks of students
