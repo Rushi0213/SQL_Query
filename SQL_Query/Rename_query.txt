@@ -1,0 +1,76 @@
+RENAME is used to change the name of an existing table in SQL.
+
+1. MySQL / Oracle Syntax
+RENAME TABLE old_table_name TO new_table_name;
+
+Example:
+RENAME TABLE student TO students;
+
+Explanation:
+student = old table name
+students = new table name
+The table name will be changed
+
+2. SQL Server Syntax
+
+In SQL Server, direct RENAME is not used.
+
+Use:
+sp_rename 'old_table_name', 'new_table_name';
+
+Example:
+sp_rename 'student', 'students';
+
+Explanation:
+sp_rename is a system stored procedure
+It changes the table name
+
+3. PostgreSQL Syntax
+ALTER TABLE old_table_name
+RENAME TO new_table_name;
+
+Example:
+ALTER TABLE student
+RENAME TO students;
+
+Explanation:
+ALTER TABLE is used to modify table structure
+RENAME TO changes the table name
+
+
+Important Note
+
+After renaming:
+
+SELECT * FROM students;
+Old table name student will no longer work.
+
+Real Example
+
+Before rename:
+
+Table name = employee
+SELECT * FROM employee;
+
+Rename query:
+RENAME TABLE employee TO staff;
+
+Now use:
+
+SELECT * FROM staff;
+Check Table Names
+
+MySQL:
+SHOW TABLES;
+
+Summary Table
+
+Database	Rename Query
+MySQL	RENAME TABLE old TO new;
+SQL Server	sp_rename 'old','new';
+PostgreSQL	ALTER TABLE old RENAME TO new;
+
+Interview Answer
+
+What is Rename in SQL?
+Rename is used to change the name of an existing database table.
