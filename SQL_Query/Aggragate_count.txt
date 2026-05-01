@@ -1,0 +1,201 @@
+COUNT() is an aggregate function used to count rows, values, or grouped records in a table.
+
+It returns a number.
+
+Example Table: Employee
+
+Id  	Name  	City	  Salary
+1    	Ram   	Pune	  25000
+2   	Shyam 	Mumbai	30000
+3   	Amit   	Pune   	NULL
+4    	Neha	  Delhi	  28000
+5    	Ram    	Pune	  26000
+
+1. COUNT(*)
+
+Counts all rows in the table.
+
+SELECT COUNT(*) FROM Employee;
+Output:
+5
+Explanation:
+
+Counts every row including rows having NULL values.
+
+
+2. COUNT(column_name)
+
+Counts only non-NULL values in a column.
+
+SELECT COUNT(Salary) FROM Employee;
+Output:
+4
+Explanation:
+
+One Salary is NULL, so it is not counted.
+
+
+3. COUNT(1)
+
+Also counts all rows.
+
+SELECT COUNT(1) FROM Employee;
+Output:
+5
+Explanation:
+
+Works like COUNT(*) in most databases.
+
+
+
+4. COUNT(DISTINCT column_name)
+
+Counts unique values only.
+
+SELECT COUNT(DISTINCT City) FROM Employee;
+Output:
+3
+Explanation:
+
+Cities are:
+
+Pune
+Mumbai
+Delhi
+
+So total unique = 3
+
+
+
+5. COUNT with WHERE
+
+Counts rows based on condition.
+
+SELECT COUNT(*) FROM Employee
+WHERE City = 'Pune';
+Output:
+3
+Explanation:
+
+Three employees are from Pune.
+
+
+
+6. COUNT with Multiple Conditions
+SELECT COUNT(*) FROM Employee
+WHERE Salary > 25000;
+Output:
+3
+Explanation:
+
+Salaries above 25000:
+
+30000
+28000
+26000
+
+
+
+7. COUNT with GROUP BY
+
+Counts records in each group.
+
+SELECT City, COUNT(*) AS Total
+FROM Employee
+GROUP BY City;
+Output:
+City	Total
+Pune	3
+Mumbai	1
+Delhi	1
+Explanation:
+
+Shows city-wise employee count.
+
+
+
+8. COUNT with HAVING
+
+Shows groups after filtering.
+
+SELECT City, COUNT(*) AS Total
+FROM Employee
+GROUP BY City
+HAVING COUNT(*) > 1;
+Output:
+City	Total
+Pune	3
+Explanation:
+
+Only Pune has more than 1 employee.
+
+
+
+9. COUNT Duplicate Values
+SELECT Name, COUNT(*) AS Total
+FROM Employee
+GROUP BY Name;
+Output:
+Name	Total
+Ram	2
+Shyam	1
+Amit	1
+Neha	1
+
+
+
+
+10. COUNT Specific Unique Names
+SELECT COUNT(DISTINCT Name) FROM Employee;
+Output:
+4
+
+Names:
+
+Ram, Shyam, Amit, Neha
+
+
+
+
+11. COUNT with NULL Check
+SELECT COUNT(*) FROM Employee
+WHERE Salary IS NULL;
+Output:
+1
+Explanation:
+
+Only Amit has NULL salary.
+
+
+
+
+12. COUNT with LIKE
+SELECT COUNT(*) FROM Employee
+WHERE Name LIKE 'R%';
+Output:
+2
+Explanation:
+
+Ram appears two times.
+
+Summary Table
+Query Type	Meaning
+COUNT(*)	Count all rows
+COUNT(column)	Count non-NULL values
+COUNT(1)	Count all rows
+COUNT(DISTINCT col)	Count unique values
+COUNT + WHERE	Count by condition
+COUNT + GROUP BY	Group-wise count
+COUNT + HAVING	Filter grouped count
+Interview Question Answer
+What is COUNT() in SQL?
+
+COUNT() is an aggregate function used to count rows or values in a table.
+
+Difference between COUNT(*) and COUNT(column)?
+COUNT(*) counts all rows
+COUNT(column) counts only non-NULL values
+Memory Trick
+* = all rows
+column = non-null values
+DISTINCT = unique values
