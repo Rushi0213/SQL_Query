@@ -1,0 +1,171 @@
+Aggregate functions are special SQL functions used to perform a calculation on multiple rows of data and return one single result.
+
+They are mainly used for:
+
+Total calculation
+Average calculation
+Highest value
+Lowest value
+Counting records
+
+These functions are very important in SQL for reports and data analysis.
+
+Why We Use Aggregate Functions?
+
+Suppose a company has 100 employees. Instead of checking salary one by one, aggregate functions help us find:
+
+Total salary of all employees
+Average salary
+Highest salary
+Lowest salary
+Total employees
+
+So they save time and make calculations easy.
+
+Main Aggregate Functions in SQL
+1. COUNT()
+
+Used to count number of rows or records.
+
+Example Uses:
+Total employees
+Total students
+Total products
+
+If table has 50 rows, COUNT() returns 50
+
+2. SUM()
+
+Used to calculate total of numeric column.
+
+Example Uses:
+Total salary
+Total marks
+Total sales amount
+
+If salaries are 10000, 15000, 20000
+Then SUM() = 45000
+
+3. AVG()
+
+Used to calculate average value.
+
+Example Uses:
+Average salary
+Average marks
+Average price
+
+If marks are 60, 70, 80
+Then average = 70
+
+4. MAX()
+
+Used to find highest value.
+
+Example Uses:
+Highest salary
+Maximum marks
+Latest date
+
+If salaries are 10000, 20000, 50000
+Then MAX() = 50000
+
+5. MIN()
+
+Used to find smallest value.
+
+Example Uses:
+Lowest salary
+Minimum marks
+Oldest date
+
+If salaries are 10000, 20000, 50000
+Then MIN() = 10000
+
+Important Points
+Aggregate Functions work on column data
+
+They mostly work on:
+
+Numbers
+Dates
+Some text counts
+They return single value
+
+Even if table has many rows, result is usually one value.
+
+Example:
+
+100 employee rows → one total salary result
+
+NULL Values
+
+Most aggregate functions ignore NULL values.
+
+Example:
+
+Marks = 70, 80, NULL
+
+Average = (70+80)/2 = 75
+
+NULL is ignored.
+
+Where Aggregate Functions Are Used
+In Companies
+Monthly sales reports
+Employee salary reports
+Attendance summary
+In Schools
+Highest marks
+Average marks
+Total students
+In Hospitals
+Total patients
+Average billing
+Highest charges
+Aggregate Functions with GROUP BY
+
+When we want calculation category-wise.
+
+Example:
+
+Department wise salary total
+City wise employee count
+Subject wise average marks
+
+GROUP BY is used with aggregate functions.
+
+Interview Definition
+
+Aggregate Functions are SQL functions used to perform calculations on multiple rows and return a single summarized result.
+
+Examples: COUNT(), SUM(), AVG(), MAX(), MIN()
+
+Simple Real-Life Example
+
+Marks of students:
+
+50, 60, 70, 80
+
+Total = SUM = 260
+Average = AVG = 65
+Highest = MAX = 80
+Lowest = MIN = 50
+Students = COUNT = 4
+Very Important for Interview
+
+They may ask:
+
+What are aggregate functions?
+Difference between COUNT(*) and COUNT(column)?
+Does AVG ignore NULL?
+Can we use GROUP BY with aggregate functions?
+Short Memory Trick
+
+C S A M M
+
+Count
+Sum
+Avg
+Max
+Min
