@@ -1,0 +1,166 @@
+Operators in SQL are symbols or keywords used to perform operations on data and conditions.
+
+They help in:
+
+Comparing values
+Filtering records
+Combining conditions
+Performing calculations
+Checking ranges and patterns
+
+
+1. Arithmetic Operators
+
+Used to perform mathematical calculations.
+
+Operator	Meaning
++       	Addition
+-        	Subtraction
+*        	Multiplication
+/	        Division
+%       	Modulus (remainder)
+
+Example Use:
+Used for salary bonus, total marks, percentage, tax calculation.
+
+2. Comparison / Relational Operators
+
+Used to compare two values.
+
+Operator	Meaning
+=       	Equal to
+>       	Greater than
+<       	Less than
+>=	     Greater than or equal to
+<=	      Less than or equal to
+<>	     Not equal to
+!=	     Not equal to (some DBs)
+
+Example Use:
+Find employees with salary greater than 30000.
+
+3. Logical Operators
+
+Used to combine multiple conditions.
+
+Operator	Meaning
+AND	      Both conditions must be true
+OR	      Any one condition true
+NOT	      Reverses condition
+
+Example Use:
+Employees from Pune AND IT department.
+
+4. Special Operators
+
+Used for specific checks.
+
+Operator	Meaning
+IN       	Matches any value in list
+BETWEEN 	Checks range
+LIKE	    Pattern matching
+IS NULL	  Checks null value
+EXISTS	  Checks if subquery returns data
+ANY	     Compare with any subquery value
+ALL    	Compare with all subquery values
+
+Example Use:
+Salary BETWEEN 20000 and 50000.
+
+5. Set Operators
+
+Used to combine results of multiple SELECT statements.
+
+Operator	     Meaning
+UNION   	      Combines unique rows
+UNION ALL	     Combines all rows including duplicates
+INTERSECT      	Common rows
+EXCEPT/MINUS  	Rows from first not in second
+
+Example Use:
+Combine employee lists from two branches.
+
+6. Bitwise Operators (SQL Server Mostly)
+
+Used on binary values.
+
+Operator	Meaning
+&	         Bitwise AND
+|	         Bitwise OR
+^	         Bitwise XOR
+
+Example Use:
+Advanced flag or permission systems.
+
+7. Assignment Operator
+
+Used to assign value to variable.
+
+Operator	Meaning
+=       	Assign value
+
+Example Use:
+Store count in variable.
+
+8. String Operators
+
+Used for text values.
+
+Operator	Meaning
++	         Concatenate strings (SQL Server)
+||	       Concatenate strings (Oracle/PostgreSQL)
+
+Example Use:
+FirstName + LastName.
+
+9. Unary Operators
+
+Work with one operand.
+
+Operator	Meaning
++      	Positive value
+-      	Negative value
+NOT    	Reverse boolean
+
+10. Compound Operators (Some Databases)
+
+Short form update operators.
+
+Operator	Meaning
++=       	Add and assign
+-=	       Subtract and assign
+*=	       Multiply and assign
+/=       	Divide and assign
+
+
+Most Used Operators in Real Projects
+=
+AND
+OR
+LIKE
+IN
+BETWEEN
+IS NULL
+
+and <
+
+
+Interview Answer
+SQL operators are symbols or keywords used to perform comparisons, calculations, logical checks, and filtering in SQL statements. Main types are Arithmetic, Comparison, Logical, Special, and Set operators.
+
+Easy Memory Trick
+
+Math work → Arithmetic
+Compare data → Comparison
+Multiple conditions → Logical
+Pattern/range/list → Special
+Combine results → Set Operators
+
+Real Life Example
+
+In Employee table:
+
+Salary > 30000 → Comparison
+City = Pune AND Dept = IT → Logical
+Name LIKE A% → Special
+Salary + Bonus → Arithmetic
