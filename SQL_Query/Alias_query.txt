@@ -1,0 +1,227 @@
+What is Alias?
+Alias means giving a temporary new name to a column or table in SQL query.
+
+It is used to:
+
+Make column names short
+Make output readable
+Rename calculated columns
+Use short table names in joins
+
+
+Types of Alias
+Column Alias – Temporary name for column
+Table Alias – Temporary name for table
+
+Syntax
+
+**Column Alias
+
+SELECT column_name AS alias_name
+FROM table_name;
+or
+SELECT column_name alias_name
+FROM table_name;
+
+**Table Alias
+
+SELECT *
+FROM Employee AS e;
+
+
+Example Table: Employee
+
+Id	  Name   	Salary  	City	  Department
+1   	Amit	  25000    	Pune    	IT
+2   	Rahul  	40000   	Mumbai	  HR
+3   	Neha  	35000   	Nashik  	IT
+
+All Types of Alias Queries
+
+1. Simple Column Alias
+SELECT Name AS EmployeeName
+FROM Employee;
+
+Explain:
+Name column shown as EmployeeName.
+
+2. Alias Without AS
+SELECT Salary TotalSalary
+FROM Employee;
+
+Explain:
+Salary shown as TotalSalary.
+
+3. Multiple Column Alias
+SELECT Id AS EmpId,
+       Name AS EmpName,
+       Salary AS EmpSalary
+FROM Employee;
+
+Explain:
+Changes multiple column headings.
+
+4. Alias with Space in Name
+SELECT Name AS [Employee Name]
+FROM Employee;
+
+Explain:
+Shows heading with space.
+
+**(SQL Server uses [])
+
+5. Alias with Single Quotes (Some DB)
+SELECT Name AS 'Employee Name'
+FROM Employee;
+
+Explain:
+Temporary heading with space.
+
+**Alias with Aggregate Functions
+
+6. COUNT Alias
+SELECT COUNT(*) AS TotalEmployees
+FROM Employee;
+
+Explain:
+Result column named TotalEmployees.
+
+7. SUM Alias
+SELECT SUM(Salary) AS TotalSalary
+FROM Employee;
+
+Explain:
+Shows total salary.
+
+8. AVG Alias
+SELECT AVG(Salary) AS AverageSalary
+FROM Employee;
+
+Explain:
+Shows average salary.
+
+9. MAX Alias
+SELECT MAX(Salary) AS HighestSalary
+FROM Employee;
+
+Explain:
+Shows maximum salary.
+
+10. MIN Alias
+SELECT MIN(Salary) AS LowestSalary
+FROM Employee;
+
+Explain:
+Shows minimum salary.
+
+**Alias with Calculated Columns
+
+11. Bonus Calculation
+SELECT Name,
+       Salary,
+       Salary + 5000 AS BonusSalary
+FROM Employee;
+
+Explain:
+Creates calculated column with alias.
+
+12. Annual Salary
+SELECT Name,
+       Salary * 12 AS AnnualSalary
+FROM Employee;
+
+Explain:
+Monthly salary converted to yearly.
+
+**Table Alias Queries
+
+13. Simple Table Alias
+SELECT e.Name, e.Salary
+FROM Employee AS e;
+
+Explain:
+e is short name for Employee table.
+
+14. Table Alias Without AS
+SELECT e.Name
+FROM Employee e;
+
+Explain:
+Same result without AS.
+
+Alias with WHERE
+15. Column Alias in SELECT
+SELECT Name AS EmployeeName
+FROM Employee
+WHERE City = 'Pune';
+
+Explain:
+Shows Pune employee names with alias heading.
+
+**Alias with ORDER BY
+
+16. Order by Alias
+SELECT Name AS EmployeeName
+FROM Employee
+ORDER BY EmployeeName;
+
+Explain:
+Sort using alias name.
+
+**Alias with GROUP BY
+
+17. Department Count
+SELECT Department AS Dept,
+       COUNT(*) AS Total
+FROM Employee
+GROUP BY Department;
+
+Explain:
+Shows department-wise employee count.
+
+**Alias with JOIN
+
+18. Join Using Table Alias
+SELECT e.Name, d.DeptName
+FROM Employee e
+JOIN Department d
+ON e.Department = d.DeptId;
+
+Explain:
+Uses short names e and d.
+
+Important Points
+
+Alias is temporary only in query result.
+It does not change original column/table name.
+AS keyword optional in many databases.
+Useful in joins and reports.
+Makes output clean and readable.
+
+Interview Answer
+Alias in SQL is used to give a temporary name to a column or table for better readability and shorter query writing.
+
+
+Real Life Example
+
+Instead of:
+
+SELECT SUM(Salary)
+FROM Employee;
+
+
+Use:
+
+SELECT SUM(Salary) AS TotalSalary
+FROM Employee;
+
+Output becomes professional.
+
+
+Practice Queries
+
+SELECT Name AS EmpName FROM Employee;
+SELECT Salary * 12 AS YearlySalary FROM Employee;
+SELECT COUNT(*) AS Total FROM Employee;
+SELECT e.Name FROM Employee e;
+SELECT MAX(Salary) AS Highest FROM Employee;
