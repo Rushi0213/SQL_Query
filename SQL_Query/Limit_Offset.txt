@@ -1,0 +1,207 @@
+What is LIMIT?
+LIMIT is used to restrict the number of rows returned by a query.
+
+It is commonly used to:
+
+Show top records
+Pagination
+Reduce large result sets
+Display few rows only
+
+
+What is OFFSET?
+OFFSET is used to skip a number of rows before starting to return rows.
+
+It is mostly used with LIMIT for pagination.
+
+Syntax
+
+MySQL / PostgreSQL
+
+SELECT column_name
+FROM table_name
+LIMIT number;
+SELECT column_name
+FROM table_name
+LIMIT number OFFSET skip_rows;
+
+
+Example Table: Employee
+
+Id	Name   	Salary	  City
+1  	Amit   	25000	     Pune
+2 	Rahul 	40000   	Mumbai
+3 	Neha  	35000	    Nashik
+4 	Priya 	50000    	Pune
+5 	Kiran 	28000	    Delhi
+
+
+**All Types of LIMIT Queries
+
+1. Show First 3 Rows
+SELECT * FROM Employee
+LIMIT 3;
+
+
+Explain:
+Returns first 3 rows only.
+
+2. Show First 1 Row
+SELECT * FROM Employee
+LIMIT 1;
+
+Explain:
+Returns only first row.
+
+3. LIMIT with Selected Columns
+SELECT Name, Salary
+FROM Employee
+LIMIT 2;
+
+Explain:
+Returns first 2 rows with selected columns only.
+
+4. LIMIT with ORDER BY Highest Salary
+SELECT * FROM Employee
+ORDER BY Salary DESC
+LIMIT 1;
+
+Explain:
+Returns employee with highest salary.
+
+5. LIMIT Lowest Salary
+SELECT * FROM Employee
+ORDER BY Salary ASC
+LIMIT 1;
+
+Explain:
+Returns employee with lowest salary.
+
+All Types of OFFSET Queries
+6. Skip First 2 Rows
+SELECT * FROM Employee
+LIMIT 10 OFFSET 2;
+
+Explain:
+Skips first 2 rows, then returns next rows.
+
+7. Skip First 3 Rows and Show 2 Rows
+SELECT * FROM Employee
+LIMIT 2 OFFSET 3;
+
+Explain:
+Skips first 3 rows and returns next 2 rows.
+
+
+8. Pagination Page 1
+SELECT * FROM Employee
+LIMIT 2 OFFSET 0;
+
+Explain:
+First page with 2 records.
+
+9. Pagination Page 2
+SELECT * FROM Employee
+LIMIT 2 OFFSET 2;
+
+Explain:
+Second page with next 2 records.
+
+10. Pagination Page 3
+SELECT * FROM Employee
+LIMIT 2 OFFSET 4;
+
+Explain:
+Third page records.
+
+
+**LIMIT with WHERE
+
+11. Show 2 Pune Employees
+SELECT * FROM Employee
+WHERE City = 'Pune'
+LIMIT 2;
+
+Explain:
+Returns first 2 employees from Pune.
+
+12. Salary Above 30000 with LIMIT
+SELECT * FROM Employee
+WHERE Salary > 30000
+LIMIT 2;
+
+Explain:
+Shows first 2 employees whose salary > 30000.
+
+
+**LIMIT with DISTINCT
+
+13. Unique Cities Only
+SELECT DISTINCT City
+FROM Employee
+LIMIT 3;
+
+Explain:
+Shows first 3 unique cities.
+
+LIMIT with Aggregate Result
+14. Top Salaries
+SELECT Salary
+FROM Employee
+ORDER BY Salary DESC
+LIMIT 3;
+
+Explain:
+Shows top 3 salaries.
+
+LIMIT Using Shortcut Syntax (MySQL)
+SELECT * FROM Employee
+LIMIT 2,3;
+
+Explain:
+Skip first 2 rows, then show next 3 rows.
+
+
+(Equivalent to LIMIT 3 OFFSET 2)
+
+SQL Server Alternative
+
+SQL Server uses:
+
+SELECT TOP 3 * FROM Employee;
+or
+SELECT * FROM Employee
+ORDER BY Id
+OFFSET 2 ROWS FETCH NEXT 3 ROWS ONLY;
+
+
+
+Important Points
+
+LIMIT controls number of rows returned.
+OFFSET skips rows first.
+Used for pagination in websites.
+Usually use with ORDER BY for proper result order.
+Supported in MySQL, PostgreSQL, SQLite.
+
+
+Interview Answer
+LIMIT is used to restrict the number of rows returned, and OFFSET is used to skip rows before returning results. Both are commonly used for pagination.
+
+Real Life Example
+
+Employee List Page
+Page 1 → first 10 employees
+Page 2 → next 10 employees
+Page 3 → next 10 employees
+SELECT * FROM Employee
+LIMIT 10 OFFSET 20;
+
+(Page 3)
+
+Practice Queries
+
+SELECT * FROM Employee LIMIT 5;
+SELECT * FROM Employee LIMIT 2 OFFSET 3;
+SELECT * FROM Employee ORDER BY Salary DESC LIMIT 1;
+SELECT DISTINCT City FROM Employee LIMIT 3;
