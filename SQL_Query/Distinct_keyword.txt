@@ -1,0 +1,180 @@
+What is DISTINCT?
+
+DISTINCT keyword is used to remove duplicate values and show only unique records from a column or multiple columns.
+
+It is used when repeated data exists in a table.
+
+Syntax
+SELECT DISTINCT column_name
+FROM table_name;
+
+Example Table: Employee
+Id 	Name	City	 Department	Salary
+1 	Amit	Pune	  IT      	30000
+2	 Rahul	Mumbai 	HR       	25000
+3	  Neha	Pune   	IT      	35000
+4	 Priya	Nashik	Admin   	28000
+5  Kiran	Mumbai	HR	      25000
+
+All Types of DISTINCT Queries
+
+1. DISTINCT Single Column
+SELECT DISTINCT City
+FROM Employee;
+
+Explain:
+Shows unique city names only.
+
+Output:
+Pune
+Mumbai
+Nashik
+
+2. DISTINCT Department
+SELECT DISTINCT Department
+FROM Employee;
+
+Explain:
+Shows all unique departments.
+
+3. DISTINCT Salary
+SELECT DISTINCT Salary
+FROM Employee;
+
+Explain:
+Shows unique salary values.
+
+4. DISTINCT Multiple Columns
+SELECT DISTINCT City, Department
+FROM Employee;
+
+Explain:
+Shows unique combinations of City + Department.
+
+Example Output:
+City  	Department
+Pune  	IT
+Mumbai	HR
+Nashik	Admin
+
+5. DISTINCT with WHERE
+SELECT DISTINCT City
+FROM Employee
+WHERE Salary > 26000;
+
+Explain:
+Shows unique cities where salary is greater than 26000.
+
+6. DISTINCT with ORDER BY
+SELECT DISTINCT City
+FROM Employee
+ORDER BY City ASC;
+
+Explain:
+Shows unique cities in ascending order.
+
+7. DISTINCT with DESC Order
+SELECT DISTINCT City
+FROM Employee
+ORDER BY City DESC;
+
+Explain:
+Shows unique cities in descending order.
+
+8. DISTINCT with TOP (SQL Server)
+SELECT TOP 3 DISTINCT Salary
+FROM Employee;
+
+Explain:
+Shows top 3 unique salary values.
+
+9. DISTINCT with COUNT
+SELECT COUNT(DISTINCT City) AS TotalCities
+FROM Employee;
+
+Explain:
+Counts how many unique cities exist.
+
+Output: 3
+
+10. DISTINCT with Aggregate Function
+SELECT AVG(DISTINCT Salary)
+FROM Employee;
+
+Explain:
+Calculates average of unique salaries only.
+
+11. DISTINCT All Columns
+SELECT DISTINCT *
+FROM Employee;
+
+Explain:
+Removes completely duplicate rows.
+
+12. DISTINCT with LIKE
+SELECT DISTINCT Name
+FROM Employee
+WHERE Name LIKE 'A%';
+
+Explain:
+Shows unique names starting with A.
+
+13. DISTINCT with IN
+SELECT DISTINCT City
+FROM Employee
+WHERE City IN ('Pune','Mumbai');
+
+Explain:
+Shows unique selected cities.
+
+14. DISTINCT with Alias
+SELECT DISTINCT City AS UniqueCity
+FROM Employee;
+
+Explain:
+Renames result column.
+
+15. DISTINCT with NULL Values
+SELECT DISTINCT City
+FROM Employee;
+
+Explain:
+If NULL values exist, DISTINCT shows only one NULL.
+
+
+Important Points
+
+DISTINCT removes duplicate values.
+Works on one or multiple columns.
+Often used with COUNT().
+Slower on very large data if no indexes.
+Use when you need clean unique results.
+DISTINCT vs GROUP BY
+SELECT DISTINCT City FROM Employee;
+
+Same as:
+
+SELECT City FROM Employee GROUP BY City;
+
+Explain:
+Both return unique cities, but GROUP BY is mainly for aggregates.
+
+
+Interview Answer
+DISTINCT keyword is used to return only unique values from a column by removing duplicate records.
+
+
+Practice Queries
+SELECT DISTINCT Name FROM Employee;
+SELECT DISTINCT Department FROM Employee;
+SELECT DISTINCT City FROM Employee;
+SELECT COUNT(DISTINCT Salary) FROM Employee;
+SELECT DISTINCT City, Department FROM Employee;
+
+Real Life Use
+
+Unique customer cities
+Unique product categories
+Unique employee departments
+Unique visitor emails
+Unique booking dates
