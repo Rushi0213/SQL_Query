@@ -1,0 +1,141 @@
+AVG() is an aggregate function used to return the average (mean) value of a numeric column.
+
+It is mostly used for:
+
+Average Salary
+Average Marks
+Average Price
+Average Age
+
+Syntax
+SELECT AVG(column_name) FROM table_name;
+
+Example Table: Employee
+
+Id	 Name 	Salary  	Age 	Department
+1   	Amit 	25000    	22    	HR
+2   	Rahul	 40000	  30	    IT
+3   	Neha 	35000	    28	    IT
+4   	Priya	50000   	35    	HR
+
+All Types of AVG() Queries
+
+1. Average Salary
+SELECT AVG(Salary) AS AverageSalary
+FROM Employee;
+
+Explain:
+Returns average salary of all employees.
+Output: 37500
+
+2. Average Age
+SELECT AVG(Age) AS AverageAge
+FROM Employee;
+
+Explain:
+Returns average age of employees.
+Output: 28.75
+
+3. AVG with WHERE Condition
+SELECT AVG(Salary)
+FROM Employee
+WHERE Age > 25;
+
+Explain:
+Average salary of employees whose age is above 25.
+
+4. AVG with Department Filter
+SELECT AVG(Salary)
+FROM Employee
+WHERE Department = 'IT';
+
+Explain:
+Average salary of IT department employees.
+
+5. AVG with GROUP BY
+SELECT Department, AVG(Salary) AS AvgSalary
+FROM Employee
+GROUP BY Department;
+
+Explain:
+Returns average salary department-wise.
+
+Department	AvgSalary
+HR	         37500
+IT	         37500
+
+6. AVG with HAVING
+SELECT Department, AVG(Salary) AS AvgSalary
+FROM Employee
+GROUP BY Department
+HAVING AVG(Salary) > 30000;
+
+Explain:
+Shows departments whose average salary is more than 30000.
+
+7. AVG with DISTINCT
+SELECT AVG(DISTINCT Salary)
+FROM Employee;
+
+Explain:
+Calculates average of unique salaries only.
+
+8. AVG with Alias Name
+SELECT AVG(Salary) AS MeanSalary
+FROM Employee;
+
+Explain:
+Changes result column name.
+
+9. AVG with Multiple Conditions
+SELECT AVG(Salary)
+FROM Employee
+WHERE Age > 25 AND Salary < 50000;
+
+Explain:
+Average salary based on multiple conditions.
+
+10. AVG of Marks Table
+SELECT AVG(Marks)
+FROM Student;
+
+Explain:
+Returns average marks of students.
+
+11. AVG of Product Price
+SELECT AVG(Price)
+FROM Product;
+
+Explain:
+Returns average price of products.
+
+12. AVG Rounded Value
+SELECT ROUND(AVG(Salary),2) AS AvgSalary
+FROM Employee;
+
+Explain:
+Returns average salary rounded to 2 decimal places.
+
+Important Points
+
+AVG() works only with numeric columns.
+NULL values are ignored.
+Returns single value unless GROUP BY is used.
+Commonly used in reports and analytics.
+
+
+Interview Answer
+AVG() is an aggregate function used to calculate the average value of a numeric column such as salary, marks, age, or price.
+
+Practice Queries
+
+SELECT AVG(Marks) FROM Student;
+SELECT AVG(Price) FROM Product;
+SELECT AVG(Salary) FROM Employee;
+SELECT AVG(Age) FROM Employee;
+Formula Used by AVG()
+
+Average = Total Sum / Number of Records
+
+Example:
+(25000 + 40000 + 35000 + 50000) / 4 = 37500
