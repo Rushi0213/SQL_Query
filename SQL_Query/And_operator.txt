@@ -1,0 +1,123 @@
+The AND operator in SQL is used to combine multiple conditions in a query.
+It returns records only when all conditions are TRUE.
+
+✅ Basic Syntax
+
+SELECT column_name
+FROM table_name
+WHERE condition1 AND condition2;
+
+
+🔹 1. Simple AND Condition
+
+SELECT * 
+FROM Employees
+WHERE Age > 25 AND City = 'Pune';
+
+👉 Explanation:
+
+Shows only employees:
+Age greater than 25 AND
+City is Pune
+If one condition fails → row is NOT returned
+
+🔹 2. AND with Multiple Conditions
+SELECT * 
+FROM Employees
+WHERE Age > 25 AND Salary > 30000 AND City = 'Mumbai';
+
+👉 Explanation:
+All 3 conditions must be true:
+Age > 25
+Salary > 30000
+City = Mumbai
+
+🔹 3. AND with BETWEEN
+SELECT * 
+FROM Employees
+WHERE Age BETWEEN 20 AND 30 AND Salary > 25000;
+
+👉 Explanation:
+Age must be between 20–30
+AND salary must be greater than 25000
+
+🔹 4. AND with LIKE
+SELECT * 
+FROM Employees
+WHERE Name LIKE 'A%' AND City = 'Pune';
+
+👉 Explanation:
+Name starts with 'A'
+AND city is Pune
+
+🔹 5. AND with NOT
+SELECT * 
+FROM Employees
+WHERE City = 'Pune' AND NOT Salary < 20000;
+
+👉 Explanation:
+City = Pune
+AND salary is NOT less than 20000
+
+🔹 6. AND with NULL
+SELECT * 
+FROM Employees
+WHERE City = 'Pune' AND Email IS NOT NULL;
+
+👉 Explanation:
+City is Pune
+AND email should not be empty
+
+🔹 7. AND with UPDATE
+UPDATE Employees
+SET Salary = 50000
+WHERE Department = 'IT' AND Experience > 5;
+
+👉 Explanation:
+Updates salary only for:
+IT department
+AND experience > 5
+
+🔹 8. AND with DELETE
+DELETE FROM Employees
+WHERE City = 'Mumbai' AND Age < 22;
+
+👉 Explanation:
+Deletes employees:
+From Mumbai
+AND age less than 22
+
+🔹 9. AND with JOIN
+SELECT e.Name, d.DepartmentName
+FROM Employees e
+JOIN Departments d
+ON e.DeptID = d.DeptID
+WHERE d.Location = 'Pune' AND e.Salary > 30000;
+
+👉 Explanation:
+Join two tables
+
+Filter:
+Department in Pune
+AND salary > 30000
+
+
+🔹 Important Rule
+
+👉 AND returns TRUE only when:
+
+TRUE AND TRUE = TRUE
+TRUE AND FALSE = FALSE
+FALSE AND TRUE = FALSE
+FALSE AND FALSE = FALSE
+
+✅ Real-Life Example
+
+Think like:
+
+"I will go out if it is Sunday AND I have money"
+
+Both must be true.
+
+✅ Interview Answer
+AND operator is used to combine multiple conditions in SQL, and it returns records only when all conditions are true.
