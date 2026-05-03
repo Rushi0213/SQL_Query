@@ -1,0 +1,91 @@
+The BETWEEN operator in SQL is used to select values within a range (inclusive) — meaning it includes both start and end values.
+
+✅ Basic Syntax
+SELECT column_nameFROM table_nameWHERE column_name BETWEEN value1 AND value2;
+
+🔹 1. Simple BETWEEN Query
+SELECT * FROM EmployeesWHERE Age BETWEEN 20 AND 30;
+
+👉 Explanation:
+Returns employees whose age is 20 to 30 (including 20 and 30)
+
+
+
+🔹 2. BETWEEN with Numbers
+SELECT * FROM EmployeesWHERE Salary BETWEEN 25000 AND 50000;
+
+👉 Explanation:
+Shows employees with salary between 25k and 50k
+
+
+
+🔹 3. BETWEEN with Dates
+SELECT * FROM OrdersWHERE OrderDate BETWEEN '2024-01-01' AND '2024-12-31';
+
+👉 Explanation:
+Returns orders placed in the year 2024
+
+
+
+🔹 4. BETWEEN with Text
+SELECT * FROM EmployeesWHERE Name BETWEEN 'A' AND 'M';
+
+👉 Explanation:
+Shows names starting from A to M (alphabetical range)
+
+
+
+🔹 5. NOT BETWEEN
+SELECT * FROM EmployeesWHERE Age NOT BETWEEN 20 AND 30;
+
+👉 Explanation:
+Shows employees:
+Less than 20
+OR greater than 30
+
+
+
+🔹 6. BETWEEN with AND Condition
+SELECT * FROM EmployeesWHERE Age BETWEEN 20 AND 30 AND City = 'Pune';
+
+👉 Explanation:
+Age between 20–30
+AND city must be Pune
+
+
+
+🔹 7. BETWEEN with OR
+SELECT * FROM EmployeesWHERE Age BETWEEN 20 AND 25 OR Salary > 50000;
+
+👉 Explanation:
+Age between 20–25
+OR salary greater than 50k
+
+
+
+🔹 8. BETWEEN with UPDATE
+UPDATE EmployeesSET Salary = 40000WHERE Age BETWEEN 25 AND 35;
+
+👉 Explanation:
+Updates salary for employees aged 25–35
+
+
+
+🔹 9. BETWEEN with DELETE
+DELETE FROM EmployeesWHERE Salary BETWEEN 10000 AND 20000;
+
+👉 Explanation:
+Deletes employees with low salary (10k–20k)
+
+
+
+🔹 Important Rule
+BETWEEN includes both values20 AND 30 → includes 20 and 30
+
+✅ Real-Life Example
+
+"Select students whose marks are between 40 and 80 (including both)"
+
+
+✅ Interview Answer
+BETWEEN operator is used to filter data within a range and includes both starting and ending values.
