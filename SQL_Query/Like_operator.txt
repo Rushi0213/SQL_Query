@@ -1,0 +1,116 @@
+The LIKE operator in SQL is used for pattern matching (searching data using patterns).
+
+✅ Basic Syntax
+SELECT column_name
+FROM table_name
+WHERE column_name LIKE 'pattern';
+
+🔹 Wildcards used with LIKE
+Symbol	Meaning
+%	Any number of characters
+_	Only one character
+
+
+🔹 1. Starts With (A%)
+SELECT * 
+FROM Employees
+WHERE Name LIKE 'A%';
+
+👉 Explanation:
+Names starting with A
+Example: Amit, Anil
+
+
+🔹 2. Ends With (%A)
+SELECT * 
+FROM Employees
+WHERE Name LIKE '%a';
+
+👉 Explanation:
+Names ending with a
+Example: Neha, Riya
+
+
+🔹 3. Contains (%A%)
+SELECT * 
+FROM Employees
+WHERE Name LIKE '%a%';
+
+👉 Explanation:
+Names containing a anywhere
+
+
+🔹 4. Single Character (_)
+SELECT * 
+FROM Employees
+WHERE Name LIKE '_a%';
+
+👉 Explanation:
+Second letter must be a
+Example: Raj, Sam
+
+
+🔹 5. Fixed Length (_ _ _)
+SELECT * 
+FROM Employees
+WHERE Name LIKE '___';
+
+👉 Explanation:
+Names with exactly 3 characters
+
+
+🔹 6. Multiple Pattern
+SELECT * 
+FROM Employees
+WHERE Name LIKE 'A%' OR Name LIKE 'B%';
+
+👉 Explanation:
+Names starting with A or B
+
+
+🔹 7. NOT LIKE
+SELECT * 
+FROM Employees
+WHERE Name NOT LIKE 'A%';
+👉 Explanation:
+Names not starting with A
+
+
+🔹 8. LIKE with AND
+SELECT * 
+FROM Employees
+WHERE Name LIKE 'A%' AND City = 'Pune';
+
+👉 Explanation:
+Name starts with A
+AND city is Pune
+
+
+🔹 9. LIKE with UPDATE
+UPDATE Employees
+SET Salary = 50000
+WHERE Name LIKE 'A%';
+
+👉 Explanation:
+Updates salary for employees whose name starts with A
+
+
+🔹 10. LIKE with DELETE
+DELETE FROM Employees
+WHERE Name LIKE '%test%';
+
+👉 Explanation:
+Deletes records containing "test" in name
+
+
+🔹 Important Points
+% = any number of characters
+_ = only one character
+Works mostly with text (VARCHAR)
+
+✅ Real-Life Example
+Search names that start with "R" → LIKE 'R%'
+
+
+✅ Interview Answer
+LIKE operator is used for pattern matching in SQL using wildcards like % and _.
