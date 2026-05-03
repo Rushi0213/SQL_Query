@@ -1,0 +1,131 @@
+The OR operator in SQL is used to combine multiple conditions, but unlike AND, it returns rows when at least one condition is TRUE.
+
+✅ Basic Syntax
+
+SELECT column_name
+FROM table_name
+WHERE condition1 OR condition2;
+
+🔹 1. Simple OR Condition
+SELECT * 
+FROM Employees
+WHERE City = 'Pune' OR City = 'Mumbai';
+
+👉 Explanation:
+Shows employees from:
+Pune OR
+Mumbai
+If any one condition is true → row is included
+
+🔹 2. OR with Multiple Conditions
+SELECT * 
+FROM Employees
+WHERE City = 'Pune' OR Salary > 50000 OR Age < 22;
+
+👉 Explanation:
+Returns rows if:
+City is Pune
+OR salary > 50000
+OR age < 22
+
+🔹 3. OR with AND (Important)
+SELECT * 
+FROM Employees
+WHERE City = 'Pune' AND Salary > 30000 OR Age < 25;
+
+👉 Explanation:
+SQL evaluates AND first:
+(City = 'Pune' AND Salary > 30000) OR Age < 25
+So:
+Employees from Pune with salary > 30000
+OR any employee with age < 25
+
+🔹 4. OR with Brackets (Best Practice)
+SELECT * 
+FROM Employees
+WHERE City = 'Pune' AND (Salary > 30000 OR Age < 25);
+
+👉 Explanation:
+First bracket is evaluated:
+Salary > 30000 OR Age < 25
+Then:
+Must be from Pune
+
+🔹 5. OR with BETWEEN
+SELECT * 
+FROM Employees
+WHERE Age BETWEEN 20 AND 30 OR Salary > 40000;
+
+👉 Explanation:
+Age between 20–30
+OR salary > 40000
+
+🔹 6. OR with LIKE
+SELECT * 
+FROM Employees
+WHERE Name LIKE 'A%' OR Name LIKE 'B%';
+
+👉 Explanation:
+Names starting with A
+OR names starting with B
+
+🔹 7. OR with NULL
+SELECT * 
+FROM Employees
+WHERE Email IS NULL OR Phone IS NULL;
+
+👉 Explanation:
+Shows employees with:
+Missing email
+OR missing phone
+
+🔹 8. OR with UPDATE
+UPDATE Employees
+SET Salary = 60000
+WHERE Department = 'IT' OR Department = 'HR';
+
+👉 Explanation:
+Updates employees from:
+IT
+OR HR
+
+🔹 9. OR with DELETE
+DELETE FROM Employees
+WHERE City = 'Mumbai' OR Age < 20;
+
+👉 Explanation:
+Deletes employees:
+From Mumbai
+OR age < 20
+
+🔹 10. OR with JOIN
+SELECT e.Name, d.DepartmentName
+FROM Employees e
+JOIN Departments d
+ON e.DeptID = d.DeptID
+WHERE d.Location = 'Pune' OR e.Salary > 50000;
+
+👉 Explanation:
+Show:
+Employees in Pune department
+OR employees with high salary
+
+🔹 Truth Table of OR
+TRUE OR TRUE = TRUE
+TRUE OR FALSE = TRUE
+FALSE OR TRUE = TRUE
+FALSE OR FALSE = FALSE
+
+✅ Real-Life Example
+"I will go out if it is Sunday OR I have money"
+
+Only one condition needs to be true.
+
+✅ AND vs OR (Quick Difference)
+AND	OR
+All conditions must be true	Any one condition must be true
+Strict filtering	Loose filtering
+
+
+✅ Interview Answer
+OR operator is used to combine multiple conditions in SQL and returns records when at least one condition is true.
