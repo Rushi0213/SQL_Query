@@ -1,0 +1,106 @@
+The NULL in SQL means no value / empty / unknown value.
+You cannot use = or != with NULL, you must use IS NULL or IS NOT NULL.
+
+✅ Basic Syntax
+SELECT column_name
+FROM table_name
+WHERE column_name IS NULL;
+
+🔹 1. IS NULL
+SELECT * 
+FROM Employees
+WHERE Email IS NULL;
+
+👉 Explanation:
+Shows employees whose email is empty / not filled
+
+
+🔹 2. IS NOT NULL
+SELECT * 
+FROM Employees
+WHERE Email IS NOT NULL;
+
+👉 Explanation:
+Shows employees whose email exists
+
+
+🔹 3. NULL with AND
+SELECT * 
+FROM Employees
+WHERE City = 'Pune' AND Email IS NULL;
+
+👉 Explanation:
+Employees from Pune
+AND email is missing
+
+
+🔹 4. NULL with OR
+SELECT * 
+FROM Employees
+WHERE Email IS NULL OR Phone IS NULL;
+
+👉 Explanation:
+Employees missing:
+Email
+OR phone
+
+
+🔹 5. NULL with NOT
+SELECT * 
+FROM Employees
+WHERE NOT Email IS NULL;
+
+👉 Explanation:
+Same as IS NOT NULL
+Shows employees with email
+
+
+
+🔹 6. NULL with UPDATE
+UPDATE Employees
+SET Email = 'default@gmail.com'
+WHERE Email IS NULL;
+
+👉 Explanation:
+Updates missing emails with default value
+
+
+🔹 7. NULL with DELETE
+DELETE FROM Employees
+WHERE Email IS NULL;
+
+👉 Explanation:
+Deletes employees whose email is empty
+
+
+🔹 8. NULL with JOIN (Important)
+SELECT e.Name, d.DepartmentName
+FROM Employees e
+LEFT JOIN Departments d
+ON e.DeptID = d.DeptID
+WHERE d.DeptID IS NULL;
+
+👉 Explanation:
+Shows employees without matching department
+
+
+🔹 9. NULL with Aggregate Function
+SELECT COUNT(Email) FROM Employees;
+
+👉 Explanation:
+Counts only non-null emails
+NULL values are ignored
+
+
+🔹 Important Rules
+Email = NULL        ❌ Wrong
+Email != NULL       ❌ Wrong
+
+Email IS NULL       ✅ Correct
+Email IS NOT NULL   ✅ Correct
+
+✅ Real-Life Example
+Student did not submit assignment → value is NULL (no data)
+
+✅ Interview Answer
+NULL represents no value in SQL and is checked using IS NULL or IS NOT NULL.
