@@ -1,0 +1,86 @@
+The IN operator in SQL is used to check if a value matches any value in a list.
+
+
+✅ Basic Syntax
+SELECT column_nameFROM table_nameWHERE column_name IN (value1, value2, value3);
+
+
+🔹 1. Simple IN Query
+SELECT * FROM EmployeesWHERE City IN ('Pune', 'Mumbai');
+
+
+👉 Explanation:
+Returns employees from Pune or Mumbai
+
+Same as: City='Pune' OR City='Mumbai'
+
+
+
+🔹 2. IN with Numbers
+SELECT * FROM EmployeesWHERE Age IN (20, 25, 30);
+
+👉 Explanation:
+Shows employees whose age is 20, 25, or 30
+
+
+
+🔹 3. NOT IN
+SELECT * FROM EmployeesWHERE City NOT IN ('Pune', 'Delhi');
+
+👉 Explanation:
+Shows employees not from Pune and Delhi
+
+
+
+🔹 4. IN with Subquery
+SELECT * FROM EmployeesWHERE DeptID IN (SELECT DeptID FROM Departments WHERE Location = 'Pune');
+
+👉 Explanation:
+First gets DeptIDs from Pune departments
+
+Then shows employees in those departments
+
+
+
+🔹 5. IN with NULL (Important)
+SELECT * FROM EmployeesWHERE City IN ('Pune', NULL);
+
+👉 Explanation:
+NULL does not work properly with IN
+
+Use IS NULL instead
+
+
+
+🔹 6. IN with UPDATE
+UPDATE EmployeesSET Salary = 50000WHERE Department IN ('IT', 'HR');
+
+
+👉 Explanation:
+Updates salary for IT and HR employees
+
+
+
+🔹 7. IN with DELETE
+DELETE FROM EmployeesWHERE ID IN (1, 2, 3);
+
+👉 Explanation:
+Deletes employees with ID 1, 2, and 3
+
+
+
+🔹 8. IN with JOIN
+SELECT Name FROM EmployeesWHERE DeptID IN (SELECT DeptID FROM Departments WHERE Location IN ('Pune','Mumbai'));
+
+👉 Explanation:
+Filters employees working in Pune or Mumbai departments
+
+
+
+✅ Real-Life Example
+
+"Select students whose roll number is in (1, 2, 3)"
+
+
+✅ Interview Answer
+IN operator is used to match a value with multiple values in a list and works like multiple OR conditions.
