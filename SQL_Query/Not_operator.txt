@@ -1,0 +1,158 @@
+The NOT operator in SQL is used to reverse a condition.
+
+It means: opposite result.
+
+If condition is TRUE → NOT makes it FALSE
+If condition is FALSE → NOT makes it TRUE
+
+✅ Basic Syntax
+SELECT column_name
+FROM table_name
+WHERE NOT condition;
+
+
+🔹 1. Simple NOT Query
+SELECT * 
+FROM Employees
+WHERE NOT City = 'Pune';
+
+👉 Explanation:
+Shows all employees except Pune.
+
+Same as:
+
+SELECT * 
+FROM Employees
+WHERE City != 'Pune';
+
+
+🔹 2. NOT with AND
+SELECT * 
+FROM Employees
+WHERE NOT (City = 'Pune' AND Salary > 30000);
+
+👉 Explanation:
+Excludes employees where:
+
+City = Pune
+AND salary > 30000
+
+Returns all other employees.
+
+
+🔹 3. NOT with OR
+SELECT * 
+FROM Employees
+WHERE NOT (City = 'Pune' OR City = 'Mumbai');
+
+👉 Explanation:
+Shows employees not from Pune or Mumbai.
+
+
+🔹 4. NOT with BETWEEN
+SELECT * 
+FROM Employees
+WHERE Age NOT BETWEEN 20 AND 30;
+
+👉 Explanation:
+Shows employees whose age is:
+
+less than 20
+or greater than 30
+
+
+🔹 5. NOT with LIKE
+SELECT * 
+FROM Employees
+WHERE Name NOT LIKE 'A%';
+
+👉 Explanation:
+Shows employees whose names do not start with A.
+
+
+🔹 6. NOT with IN
+SELECT * 
+FROM Employees
+WHERE City NOT IN ('Pune', 'Mumbai');
+
+👉 Explanation:
+Shows employees not from:
+
+Pune
+Mumbai
+
+
+🔹 7. NOT with NULL
+SELECT * 
+FROM Employees
+WHERE Email IS NOT NULL;
+
+👉 Explanation:
+Shows employees whose email exists.
+
+
+🔹 8. NOT with EXISTS
+SELECT * 
+FROM Employees
+WHERE NOT EXISTS
+(
+   SELECT * FROM Orders WHERE Employees.ID = Orders.EmpID
+);
+
+👉 Explanation:
+Shows employees who have no orders.
+
+
+🔹 9. NOT with UPDATE
+UPDATE Employees
+SET Salary = 40000
+WHERE NOT Department = 'HR';
+
+👉 Explanation:
+Updates all employees except HR department.
+
+
+
+🔹 10. NOT with DELETE
+DELETE FROM Employees
+WHERE NOT City = 'Pune';
+
+👉 Explanation:
+Deletes all employees except Pune.
+
+⚠️ Dangerous query — use carefully.
+
+🔹 Truth Table of NOT
+NOT TRUE = FALSE
+NOT FALSE = TRUE
+
+✅ Real-Life Example
+
+I will eat pizza if it is NOT Monday
+
+Meaning: eat pizza on all days except Monday.
+
+
+✅ Common Uses of NOT
+NOT IN
+NOT LIKE
+NOT BETWEEN
+IS NOT NULL
+NOT EXISTS
+
+
+✅ Interview Answer
+NOT operator is used to reverse a condition in SQL and returns opposite results.
+
+
+Example:
+
+SELECT * FROM Employee WHERE NOT City='Pune';
+
+Shows all employees except Pune.
+
+✅ Quick Difference
+Operator	Meaning
+AND	All conditions true
+OR	Any one true
+NOT	Opposite condition
