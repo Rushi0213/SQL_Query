@@ -1,0 +1,98 @@
+1. SELECT
+Used to choose the columns (data) you want to retrieve from a table
+It defines what data should be displayed
+
+
+2. FROM
+Specifies the table (or tables) from which data is taken
+It defines where the data comes from
+
+
+3. WHERE
+Filters records based on a condition
+It is used to get only the required rows
+
+
+4. GROUP BY
+Groups rows that have the same values in specified columns
+Mostly used with aggregate functions (like SUM, COUNT)
+
+
+5. HAVING
+Filters grouped data (after GROUP BY)
+Works like WHERE but for grouped results
+
+
+6. ORDER BY
+Sorts the result in ascending or descending order
+Used to arrange data properly
+
+
+7. DISTINCT
+Removes duplicate records from the result
+Ensures only unique values are returned
+
+
+8. LIMIT
+Restricts the number of rows returned
+Used when you want only a few records
+
+
+9. OFFSET
+Skips a specified number of rows before starting to return rows
+Often used with LIMIT for pagination
+
+
+10. JOIN
+Combines rows from two or more tables
+Types include INNER JOIN, LEFT JOIN, RIGHT JOIN, FULL JOIN
+
+
+11. ON
+Specifies the condition used in JOIN
+Defines how tables are related
+
+
+12. AS (Alias)
+Gives a temporary name to a table or column
+Makes queries easier to read
+
+
+13. IN
+Checks if a value matches any value in a list
+Used for multiple value comparison
+
+
+14. BETWEEN
+Filters values within a specific range
+Includes both start and end values
+
+
+15. LIKE
+Used for pattern matching
+Helps search using wildcards (like %, _)
+
+
+16. IS NULL
+Checks for missing (NULL) values
+Used when data is not present
+
+
+17. UNION
+Combines results from multiple SELECT statements
+Removes duplicate rows by default
+
+
+18. UNION ALL
+Same as UNION but keeps duplicate records
+Faster than UNION
+
+
+19. EXISTS
+Checks if a subquery returns any record
+Returns TRUE or FALSE
+
+
+20. CASE
+Used for conditional logic (like if-else)
+Helps create custom output based on conditions
