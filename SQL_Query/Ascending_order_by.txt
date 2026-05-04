@@ -1,0 +1,135 @@
+Here are all important types of ASCENDING (ORDER BY ASC) queries in SQL with examples:
+
+🔹 1. Basic Ascending Order (Default)
+SELECT * FROM Employees
+ORDER BY Salary ASC;
+
+👉 Sorts salary from low → high
+
+
+🔹 2. Ascending Without Writing ASC (Default Behavior)
+SELECT * FROM Employees
+ORDER BY Salary;
+
+👉 Same as ASC (SQL automatically uses ascending)
+
+
+🔹 3. Ascending Order on Text Column
+SELECT * FROM Employees
+ORDER BY Name ASC;
+
+👉 Sorts A → Z
+
+
+🔹 4. Ascending Order on Date
+SELECT * FROM Orders
+ORDER BY OrderDate ASC;
+
+👉 Sorts from oldest → newest
+
+
+🔹 5. Ascending Order with Multiple Columns
+SELECT * FROM Employees
+ORDER BY Department ASC, Salary ASC;
+
+👉 First sorts by department, then salary (low → high)
+
+
+🔹 6. Mixed Sorting (ASC + DESC)
+SELECT * FROM Employees
+ORDER BY Department ASC, Salary DESC;
+
+👉 Department A→Z, but salary high→low inside each department
+
+
+🔹 7. Ascending Order Using Column Position
+SELECT Name, Salary FROM Employees
+ORDER BY 2 ASC;
+
+👉 Sorts by 2nd column (Salary)
+
+
+🔹 8. Ascending Order Using Alias
+SELECT Name, Salary AS Income FROM Employees
+ORDER BY Income ASC;
+
+👉 Uses alias name for sorting
+
+
+🔹 9. Ascending Order with Expression
+SELECT Name, Salary * 12 AS AnnualSalary FROM Employees
+ORDER BY AnnualSalary ASC;
+
+👉 Sorts calculated values (low → high)
+
+
+🔹 10. Ascending Order with WHERE
+SELECT * FROM Employees
+WHERE Department = 'IT'
+ORDER BY Salary ASC;
+
+👉 Filters first, then sorts ascending
+
+
+🔹 11. Ascending Order with GROUP BY
+SELECT Department, COUNT(*) AS Total
+FROM Employees
+GROUP BY Department
+ORDER BY Total ASC;
+
+👉 Sorts grouped results (low → high)
+
+
+🔹 12. Ascending Order with HAVING
+SELECT Department, COUNT(*) AS Total
+FROM Employees
+GROUP BY Department
+HAVING COUNT(*) > 2
+ORDER BY Total ASC;
+
+👉 Filters groups, then sorts
+
+
+🔹 13. Ascending Order with LIMIT
+SELECT * FROM Employees
+ORDER BY Salary ASC
+LIMIT 5;
+
+👉 Shows lowest 5 salaries
+
+
+🔹 14. Ascending Order with OFFSET
+SELECT * FROM Employees
+ORDER BY Salary ASC
+OFFSET 5 ROWS FETCH NEXT 5 ROWS ONLY;
+
+👉 Skips 5 lowest, shows next 5
+
+
+🔹 15. Ascending Order with NULL Handling
+SELECT * FROM Employees
+ORDER BY Salary ASC NULLS FIRST;
+
+👉 NULL values come first
+
+
+🔹 16. Custom Ascending Order (CASE)
+SELECT * FROM Employees
+ORDER BY 
+  CASE Department
+    WHEN 'HR' THEN 1
+    WHEN 'IT' THEN 2
+    ELSE 3
+  END ASC;
+
+👉 Custom defined ascending order
+
+
+🔥 Important Notes
+ASC = Ascending (small → big, A → Z)
+ASC is default, no need to write it
+Can sort:
+Numbers
+Text
+Dates
+Used at end of query
