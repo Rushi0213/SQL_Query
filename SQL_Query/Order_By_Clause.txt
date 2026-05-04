@@ -1,0 +1,52 @@
+ORDER BY Clause (SQL) – Explanation
+
+The ORDER BY clause is used to sort the result of a query in a specific order.
+
+🔹 What it does
+Arranges data in a meaningful order
+Helps in reading and analyzing results easily
+Sorting can be done on one or multiple columns
+
+
+🔹 Types of Sorting
+
+1. Ascending Order (ASC)
+Default sorting type
+Arranges data from:
+Small → Large (numbers)
+A → Z (text)
+Old → New (dates)
+
+2. Descending Order (DESC)
+Opposite of ascending
+Arranges data from:
+Large → Small
+Z → A
+New → Old
+
+🔹 Key Features
+You can sort by multiple columns
+First column gets priority
+Second column is used if first has same values
+
+Works with:
+Numbers
+Text
+Dates
+
+Can be used with other clauses like:
+WHERE
+GROUP BY
+HAVING
+
+🔹 Important Points
+ORDER BY is usually written at the end of the query
+It does not filter data, only sorts it
+Sorting may affect performance if data is large
+
+
+🔹 Simple Understanding
+
+Think of ORDER BY like:
+👉 Sorting contacts in your phone (A–Z or Z–A)
+👉 Sorting marks list (highest to lowest)
