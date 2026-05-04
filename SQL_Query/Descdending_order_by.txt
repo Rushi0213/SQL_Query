@@ -1,0 +1,127 @@
+Here are all important types of DESCENDING (ORDER BY DESC) queries in SQL:
+
+🔹 1. Basic Descending Order
+SELECT * FROM Employees
+ORDER BY Salary DESC;
+
+👉 Sorts salary from high → low
+
+
+🔹 2. Descending Order on Text Column
+SELECT * FROM Employees
+ORDER BY Name DESC;
+
+👉 Sorts Z → A
+
+
+🔹 3. Descending Order on Date
+SELECT * FROM Orders
+ORDER BY OrderDate DESC;
+
+👉 Sorts from newest → oldest
+
+
+🔹 4. Descending Order with Multiple Columns
+SELECT * FROM Employees
+ORDER BY Department DESC, Salary DESC;
+
+👉 First sorts department (Z→A), then salary (high→low)
+
+
+🔹 5. Mixed Sorting (DESC + ASC)
+SELECT * FROM Employees
+ORDER BY Department DESC, Salary ASC;
+
+👉 Department Z→A, but salary low→high inside each
+
+
+🔹 6. Descending Using Column Position
+SELECT Name, Salary FROM Employees
+ORDER BY 2 DESC;
+
+👉 Sorts by 2nd column (Salary high→low)
+
+
+🔹 7. Descending Using Alias
+SELECT Name, Salary AS Income FROM Employees
+ORDER BY Income DESC;
+
+👉 Uses alias for sorting
+
+
+🔹 8. Descending with Expression
+SELECT Name, Salary * 12 AS AnnualSalary FROM Employees
+ORDER BY AnnualSalary DESC;
+
+👉 Sorts calculated values (high→low)
+
+
+🔹 9. Descending with WHERE
+SELECT * FROM Employees
+WHERE Department = 'IT'
+ORDER BY Salary DESC;
+
+👉 Filters first, then sorts descending
+
+
+🔹 10. Descending with GROUP BY
+SELECT Department, COUNT(*) AS Total
+FROM Employees
+GROUP BY Department
+ORDER BY Total DESC;
+
+👉 Sorts grouped results (highest first)
+
+
+🔹 11. Descending with HAVING
+SELECT Department, COUNT(*) AS Total
+FROM Employees
+GROUP BY Department
+HAVING COUNT(*) > 2
+ORDER BY Total DESC;
+
+👉 Filters groups, then sorts
+
+
+🔹 12. Descending with LIMIT
+SELECT * FROM Employees
+ORDER BY Salary DESC
+LIMIT 5;
+
+👉 Shows top 5 highest salaries
+
+
+🔹 13. Descending with OFFSET
+SELECT * FROM Employees
+ORDER BY Salary DESC
+OFFSET 5 ROWS FETCH NEXT 5 ROWS ONLY;
+
+👉 Skips top 5, shows next 5
+
+
+🔹 14. Descending with NULL Handling
+SELECT * FROM Employees
+ORDER BY Salary DESC NULLS LAST;
+
+👉 NULL values go to end
+
+
+🔹 15. Custom Descending Order (CASE)
+SELECT * FROM Employees
+ORDER BY 
+  CASE Department
+    WHEN 'HR' THEN 1
+    WHEN 'IT' THEN 2
+    ELSE 3
+  END DESC;
+
+👉 Custom order in descending way
+
+
+🔥 Important Notes
+DESC = Descending (big → small, Z → A)
+Always written after column name
+Used for:
+Highest salary
+Latest date
+Top records
