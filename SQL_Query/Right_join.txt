@@ -1,0 +1,139 @@
+🔗 RIGHT JOIN – Basic Idea
+
+👉 RIGHT JOIN returns:
+All records from the right table
+Matching records from the left table
+
+👉 If no match → NULL from left table
+
+📌 Example Tables
+Students (left table)
+Courses (right table)
+
+
+📌 1. Simple RIGHT JOIN
+SELECT s.Name, c.CourseName
+FROM Students s
+RIGHT JOIN Courses c
+ON s.StudentId = c.StudentId;
+
+✅ Explanation:
+Shows all courses
+If a course has no student → student name = NULL
+
+
+📌 2. RIGHT JOIN with WHERE condition
+SELECT s.Name, c.CourseName
+FROM Students s
+RIGHT JOIN Courses c
+ON s.StudentId = c.StudentId
+WHERE c.CourseName = 'Java';
+
+✅ Explanation:
+First joins tables
+Then filters → only Java courses
+Still keeps all matching Java records from right table
+
+
+📌 3. RIGHT JOIN with SELECT specific columns
+SELECT c.CourseName
+FROM Students s
+RIGHT JOIN Courses c
+ON s.StudentId = c.StudentId;
+
+✅ Explanation:
+Shows only course names
+Includes all courses (even without students)
+
+
+📌 4. RIGHT JOIN with multiple conditions
+SELECT s.Name, c.CourseName
+FROM Students s
+RIGHT JOIN Courses c
+ON s.StudentId = c.StudentId AND c.CourseName = 'DotNet';
+
+✅ Explanation:
+Join happens only if:
+StudentId matches AND
+Course = DotNet
+Other courses still appear (with NULL student)
+
+
+📌 5. RIGHT JOIN with ORDER BY
+SELECT s.Name, c.CourseName
+FROM Students s
+RIGHT JOIN Courses c
+ON s.StudentId = c.StudentId
+ORDER BY c.CourseName ASC;
+
+✅ Explanation:
+Sorts output by course name
+
+
+📌 6. RIGHT JOIN with GROUP BY
+SELECT c.CourseName, COUNT(s.StudentId) AS TotalStudents
+FROM Students s
+RIGHT JOIN Courses c
+ON s.StudentId = c.StudentId
+GROUP BY c.CourseName;
+
+✅ Explanation:
+Groups by course
+Counts students per course
+Courses with no students → count = 0
+
+
+📌 7. RIGHT JOIN with aggregate function
+SELECT COUNT(*) AS TotalRecords
+FROM Students s
+RIGHT JOIN Courses c
+ON s.StudentId = c.StudentId;
+
+✅ Explanation:
+Counts total rows after join
+Includes unmatched right table rows
+
+
+📌 8. RIGHT JOIN with multiple tables
+SELECT s.Name, c.CourseName, t.TrainerName
+FROM Students s
+RIGHT JOIN Courses c ON s.StudentId = c.StudentId
+INNER JOIN Trainers t ON c.TrainerId = t.TrainerId;
+
+✅ Explanation:
+RIGHT JOIN between Students & Courses
+Then INNER JOIN with Trainers
+Shows all courses with trainer info
+
+
+📌 9. RIGHT JOIN with alias
+SELECT s.Name, c.CourseName
+FROM Students s
+RIGHT JOIN Courses c
+ON s.StudentId = c.StudentId;
+
+✅ Explanation:
+s and c are aliases
+Makes query shorter and cleaner
+
+
+📌 10. RIGHT JOIN with DISTINCT
+SELECT DISTINCT c.CourseName
+FROM Students s
+RIGHT JOIN Courses c
+ON s.StudentId = c.StudentId;
+
+✅ Explanation:
+Removes duplicate course names
+Shows unique courses
+
+🎯 Final Understanding
+👉 RIGHT JOIN focuses on right table
+
+✔ All right table data is always shown
+✔ Left table data appears only if matched
+✔ Otherwise → NULL
+
+🔥 Interview Line
+
+👉 “RIGHT JOIN returns all records from the right table and matching records from the left table. If no match is found, NULL values are returned from the left table.”
