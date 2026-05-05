@@ -1,0 +1,152 @@
+🔗 FULL OUTER JOIN – Basic Idea
+
+👉 FULL OUTER JOIN returns:
+All records from left table
+All records from right table
+
+👉 Matching rows → combined
+👉 Not matching → NULL on missing side
+
+
+📌 Simple Understanding
+Situation	Result
+Match in both tables	Show combined data
+Only in left table	Right side = NULL
+Only in right table	Left side = NULL
+
+📌 Example Tables
+Students (left)
+Courses (right)
+
+
+📌 1. Simple FULL OUTER JOIN
+SELECT s.Name, c.CourseName
+FROM Students s
+FULL OUTER JOIN Courses c
+ON s.StudentId = c.StudentId;
+
+✅ Explanation:
+Shows all students + all courses
+Matching → combined
+Unmatched → NULL values
+
+
+📌 2. FULL OUTER JOIN with WHERE condition
+SELECT s.Name, c.CourseName
+FROM Students s
+FULL OUTER JOIN Courses c
+ON s.StudentId = c.StudentId
+WHERE s.Name IS NOT NULL;
+
+✅ Explanation:
+Shows only rows where student exists
+Removes rows where only course exists
+
+
+📌 3. FULL OUTER JOIN with SELECT specific columns
+SELECT s.Name
+FROM Students s
+FULL OUTER JOIN Courses c
+ON s.StudentId = c.StudentId;
+
+✅ Explanation:
+Shows student names
+Includes unmatched students also
+
+
+📌 4. FULL OUTER JOIN with multiple conditions
+SELECT s.Name, c.CourseName
+FROM Students s
+FULL OUTER JOIN Courses c
+ON s.StudentId = c.StudentId AND c.CourseName = 'Java';
+
+✅ Explanation:
+Matches only Java courses
+Other rows still appear with NULL
+
+
+📌 5. FULL OUTER JOIN with ORDER BY
+SELECT s.Name, c.CourseName
+FROM Students s
+FULL OUTER JOIN Courses c
+ON s.StudentId = c.StudentId
+ORDER BY s.Name ASC;
+
+✅ Explanation:
+Sorts result by student name
+
+
+📌 6. FULL OUTER JOIN with GROUP BY
+SELECT c.CourseName, COUNT(s.StudentId) AS TotalStudents
+FROM Students s
+FULL OUTER JOIN Courses c
+ON s.StudentId = c.StudentId
+GROUP BY c.CourseName;
+
+✅ Explanation:
+Groups by course
+Counts students per course
+Includes courses with no students
+
+
+📌 7. FULL OUTER JOIN with aggregate function
+SELECT COUNT(*) AS TotalRecords
+FROM Students s
+FULL OUTER JOIN Courses c
+ON s.StudentId = c.StudentId;
+
+✅ Explanation:
+Counts all rows from both tables
+Includes unmatched records
+
+
+📌 8. FULL OUTER JOIN with multiple tables
+SELECT s.Name, c.CourseName, t.TrainerName
+FROM Students s
+FULL OUTER JOIN Courses c ON s.StudentId = c.StudentId
+LEFT JOIN Trainers t ON c.TrainerId = t.TrainerId;
+
+✅ Explanation:
+Full join between Students & Courses
+Then left join with Trainers
+Shows all possible data
+
+
+📌 9. FULL OUTER JOIN with alias
+SELECT s.Name, c.CourseName
+FROM Students s
+FULL OUTER JOIN Courses c
+ON s.StudentId = c.StudentId;
+
+✅ Explanation:
+s and c are aliases
+Makes query shorter
+
+
+📌 10. FULL OUTER JOIN with DISTINCT
+SELECT DISTINCT s.Name, c.CourseName
+FROM Students s
+FULL OUTER JOIN Courses c
+ON s.StudentId = c.StudentId;
+
+✅ Explanation:
+Removes duplicate rows
+
+
+🔥 Important Note
+👉 Some databases (like MySQL) do NOT support FULL OUTER JOIN directly
+
+Alternative:
+Use LEFT JOIN + RIGHT JOIN + UNION
+
+
+🎯 Final Understanding
+👉 FULL OUTER JOIN = complete data from both tables
+
+✔ Includes matched + unmatched rows
+✔ Missing values → NULL
+✔ Used when you want full data comparison
+
+
+🔥 Interview Line
+👉 “FULL OUTER JOIN returns all records from both tables. If there is no match, NULL values are returned for the missing side.”
