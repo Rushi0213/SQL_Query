@@ -1,0 +1,150 @@
+🔗 LEFT JOIN – Basic Idea
+
+👉 LEFT JOIN returns:
+All records from the left table
+Matching records from the right table
+
+👉 If no match → NULL from right table
+
+📌 Example Tables
+Students (left table)
+Courses (right table)
+
+
+📌 1. Simple LEFT JOIN
+SELECT s.Name, c.CourseName
+FROM Students s
+LEFT JOIN Courses c
+ON s.StudentId = c.StudentId;
+
+✅ Explanation:
+Shows all students
+If student has no course → CourseName = NULL
+
+📌 2. LEFT JOIN with WHERE condition
+SELECT s.Name, c.CourseName
+FROM Students s
+LEFT JOIN Courses c
+ON s.StudentId = c.StudentId
+WHERE c.CourseName = 'Java';
+
+⚠️ Important Explanation:
+This behaves like INNER JOIN
+Because WHERE filters out NULL values
+
+👉 Only students with Java course will appear
+
+
+📌 3. LEFT JOIN with SELECT specific columns
+SELECT s.Name
+FROM Students s
+LEFT JOIN Courses c
+ON s.StudentId = c.StudentId;
+
+✅ Explanation:
+Shows only student names
+But internally still joins tables
+
+
+📌 4. LEFT JOIN with multiple conditions
+SELECT s.Name, c.CourseName
+FROM Students s
+LEFT JOIN Courses c
+ON s.StudentId = c.StudentId AND c.CourseName = 'DotNet';
+
+✅ Explanation:
+All students shown
+Only DotNet course matched
+Other courses → NULL
+
+
+📌 5. LEFT JOIN with ORDER BY
+SELECT s.Name, c.CourseName
+FROM Students s
+LEFT JOIN Courses c
+ON s.StudentId = c.StudentId
+ORDER BY s.Name ASC;
+
+✅ Explanation:
+Sorts result by student name
+
+
+📌 6. LEFT JOIN with GROUP BY
+SELECT s.Name, COUNT(c.CourseName) AS TotalCourses
+FROM Students s
+LEFT JOIN Courses c
+ON s.StudentId = c.StudentId
+GROUP BY s.Name;
+
+✅ Explanation:
+Groups by student
+Counts number of courses per student
+Students with no course → count = 0
+
+
+📌 7. LEFT JOIN with aggregate function
+SELECT COUNT(*) AS TotalRecords
+FROM Students s
+LEFT JOIN Courses c
+ON s.StudentId = c.StudentId;
+
+✅ Explanation:
+Counts all rows including unmatched students
+
+
+📌 8. LEFT JOIN with multiple tables
+SELECT s.Name, c.CourseName, t.TrainerName
+FROM Students s
+LEFT JOIN Courses c ON s.StudentId = c.StudentId
+LEFT JOIN Trainers t ON c.TrainerId = t.TrainerId;
+
+✅ Explanation:
+Joins 3 tables
+Shows all students
+Course & Trainer may be NULL
+
+
+📌 9. LEFT JOIN with alias
+SELECT s.Name, c.CourseName
+FROM Students s
+LEFT JOIN Courses c
+ON s.StudentId = c.StudentId;
+
+✅ Explanation:
+s and c are aliases
+Makes query cleaner
+
+
+📌 10. LEFT JOIN with DISTINCT
+SELECT DISTINCT s.Name
+FROM Students s
+LEFT JOIN Courses c
+ON s.StudentId = c.StudentId;
+
+✅ Explanation:
+Removes duplicate student names
+🔥 VERY IMPORTANT (Interview Trick)
+
+❌ Wrong understanding:
+
+LEFT JOIN + WHERE condition on right table
+WHERE c.CourseName = 'Java'
+
+👉 This removes NULL → behaves like INNER JOIN
+
+
+✅ Correct way (to keep LEFT JOIN behavior)
+ON s.StudentId = c.StudentId AND c.CourseName = 'Java'
+
+
+🎯 Final Understanding
+
+👉 LEFT JOIN focuses on left table
+
+✔ All left table data always shown
+✔ Right table data only if matched
+✔ Otherwise → NULL
+
+
+🔥 Interview Line
+👉 “LEFT JOIN returns all records from the left table and matching records from the right table. If no match is found, NULL values are returned from the right table.”
