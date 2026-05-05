@@ -1,0 +1,122 @@
+🔗 INNER JOIN – Basic Idea
+👉 Returns only matching records from both tables
+
+
+📌 1. Simple INNER JOIN
+SELECT s.Name, c.CourseName
+FROM Students s
+INNER JOIN Courses c
+ON s.StudentId = c.StudentId;
+
+✅ Explanation:
+Joins Students and Courses using StudentId
+Shows only students who have a course
+
+
+📌 2. INNER JOIN with WHERE condition
+SELECT s.Name, c.CourseName
+FROM Students s
+INNER JOIN Courses c
+ON s.StudentId = c.StudentId
+WHERE c.CourseName = 'Java';
+
+✅ Explanation:
+First joins both tables
+Then filters → only Java course students
+
+
+📌 3. INNER JOIN with SELECT specific columns
+SELECT s.Name
+FROM Students s
+INNER JOIN Courses c
+ON s.StudentId = c.StudentId;
+
+✅ Explanation:
+Only shows student names
+But still checks matching records internally
+
+
+📌 4. INNER JOIN with multiple conditions
+SELECT s.Name, c.CourseName
+FROM Students s
+INNER JOIN Courses c
+ON s.StudentId = c.StudentId AND c.CourseName = 'DotNet';
+
+✅ Explanation:
+Join happens only if:
+StudentId matches AND
+Course is DotNet
+
+
+📌 5. INNER JOIN with ORDER BY
+SELECT s.Name, c.CourseName
+FROM Students s
+INNER JOIN Courses c
+ON s.StudentId = c.StudentId
+ORDER BY s.Name ASC;
+
+✅ Explanation:
+Result is sorted by student name
+
+
+📌 6. INNER JOIN with GROUP BY
+SELECT c.CourseName, COUNT(*) AS TotalStudents
+FROM Students s
+INNER JOIN Courses c
+ON s.StudentId = c.StudentId
+GROUP BY c.CourseName;
+
+✅ Explanation:
+Groups data by course
+Counts how many students per course
+
+
+📌 7. INNER JOIN with aggregate function
+SELECT COUNT(*) AS TotalRecords
+FROM Students s
+INNER JOIN Courses c
+ON s.StudentId = c.StudentId;
+
+✅ Explanation:
+Counts total matching records
+
+
+📌 8. INNER JOIN with multiple tables
+SELECT s.Name, c.CourseName, t.TrainerName
+FROM Students s
+INNER JOIN Courses c ON s.StudentId = c.StudentId
+INNER JOIN Trainers t ON c.TrainerId = t.TrainerId;
+
+✅ Explanation:
+Joins 3 tables
+Gets student + course + trainer data
+
+
+📌 9. INNER JOIN with alias (best practice)
+SELECT s.Name, c.CourseName
+FROM Students s
+INNER JOIN Courses c
+ON s.StudentId = c.StudentId;
+
+✅ Explanation:
+s and c are short names (aliases)
+Makes query easy and clean
+
+
+📌 10. INNER JOIN with DISTINCT
+SELECT DISTINCT s.Name
+FROM Students s
+INNER JOIN Courses c
+ON s.StudentId = c.StudentId;
+
+✅ Explanation:
+Removes duplicate student names
+
+🎯 Final Summary
+
+👉 INNER JOIN is used:
+To get common data between tables
+Works only on matching condition
+🔥 Interview Line
+
+👉 “INNER JOIN returns only those records where the join condition matches in both tables.”
