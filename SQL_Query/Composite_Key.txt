@@ -1,0 +1,177 @@
+🔑 What is Composite Key (Quick Recall)
+A Composite Key is a primary key made using two or more columns.
+
+👉 Key Points:
+
+Combination must be unique
+Individual columns can have duplicates
+Used when single column is not enough
+
+
+
+🔷 1. Create Table with Composite Key
+
+👉 Purpose: Define composite PK at creation
+
+CREATE TABLE Enrollment (
+    StudentID INT,
+    CourseID INT,
+    PRIMARY KEY (StudentID, CourseID)
+);
+
+👉 Explanation:
+
+Combination of StudentID + CourseID must be unique
+Same student can enroll in multiple courses
+But same student + same course cannot repeat
+
+
+
+🔷 2. Composite Key with Constraint Name
+
+👉 Purpose: Name the composite PK
+
+CREATE TABLE Enrollment (
+    StudentID INT,
+    CourseID INT,
+    CONSTRAINT PK_Enrollment PRIMARY KEY (StudentID, CourseID)
+);
+
+👉 Explanation:
+
+Naming helps for future modification
+
+
+
+🔷 3. Add Composite Key to Existing Table
+
+👉 Purpose: Add after table creation
+
+ALTER TABLE Enrollment
+ADD PRIMARY KEY (StudentID, CourseID);
+
+👉 Explanation:
+
+Existing data must not contain duplicate combinations
+
+
+
+🔷 4. Insert Valid Data
+INSERT INTO Enrollment (StudentID, CourseID)
+VALUES (1, 101);
+
+👉 Explanation:
+
+Works because combination is new
+
+
+
+
+🔷 5. Insert Duplicate Combination (Error Case)
+INSERT INTO Enrollment (StudentID, CourseID)
+VALUES (1, 101);
+
+👉 Explanation:
+
+Fails → duplicate combination not allowed
+
+
+
+
+🔷 6. Insert Partial Duplicate (Allowed Case)
+INSERT INTO Enrollment (StudentID, CourseID)
+VALUES (1, 102);
+
+👉 Explanation:
+
+Allowed because combination is different
+Same student, different course
+
+
+
+
+
+🔷 7. Update Composite Key
+UPDATE Enrollment
+SET CourseID = 103
+WHERE StudentID = 1 AND CourseID = 101;
+
+👉 Explanation:
+
+Allowed only if new combination is unique
+
+
+
+🔷 8. Delete Record Using Composite Key
+DELETE FROM Enrollment
+WHERE StudentID = 1 AND CourseID = 101;
+
+👉 Explanation:
+
+Must specify both columns to identify row
+
+
+
+
+🔷 9. Composite Key with Foreign Keys
+
+👉 Purpose: Use composite key in relationships
+
+CREATE TABLE Result (
+    StudentID INT,
+    CourseID INT,
+    Marks INT,
+    FOREIGN KEY (StudentID, CourseID)
+    REFERENCES Enrollment(StudentID, CourseID)
+);
+
+👉 Explanation:
+
+FK also uses same combination
+Maintains relationship properly
+
+
+
+🔷 10. Drop Composite Key
+
+👉 Purpose: Remove PK
+
+MySQL:
+ALTER TABLE Enrollment
+DROP PRIMARY KEY;
+SQL Server:
+ALTER TABLE Enrollment
+DROP CONSTRAINT PK_Enrollment;
+
+👉 Explanation:
+
+Removes uniqueness rule
+
+
+🔥 Real-Life Use Case
+👉 Student Enrollment System
+
+StudentID alone ❌ not enough
+CourseID alone ❌ not enough
+StudentID + CourseID ✅ perfect
+
+
+🔥 Important Interview Points
+Composite key = multiple columns as PK
+Used when no single unique column exists
+Improves data accuracy
+Common in many-to-many relationships
+
+
+✅ Difference
+Feature	   Primary Key	  Composite Key
+Columns    	One           	Multiple
+Uniqueness	Single	        Combination
+
+
+
+✅ Short Summary
+
+👉 Composite = Combination key
+👉 Unique together, not individually
+👉 Used in relationship tables
