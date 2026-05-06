@@ -1,0 +1,214 @@
+🔑 What is Primary Key (Quick Recall)
+A Primary Key uniquely identifies each row in a table.
+
+No duplicates
+No NULL values
+Only one PK per table
+
+
+🔷 1. Create Table with Primary Key (Single Column)
+
+👉 Purpose: Define PK at the time of table creation
+
+CREATE TABLE Student (
+    StudentID INT PRIMARY KEY,
+    Name VARCHAR(50),
+    Age INT
+);
+
+👉 Explanation:
+
+StudentID is the primary key
+Each student must have a unique ID
+NULL is not allowed
+
+
+
+🔷 2. Create Table with Primary Key (Constraint Method)
+
+👉 Purpose: Define PK using constraint name
+
+CREATE TABLE Student (
+    StudentID INT,
+    Name VARCHAR(50),
+    CONSTRAINT PK_Student PRIMARY KEY (StudentID)
+);
+
+👉 Explanation:
+
+Same as above but gives a name to PK
+Useful in large databases
+
+
+
+🔷 3. Composite Primary Key (Multiple Columns)
+
+👉 Purpose: Use more than one column as PK
+
+CREATE TABLE Enrollment (
+    StudentID INT,
+    CourseID INT,
+    PRIMARY KEY (StudentID, CourseID)
+);
+
+👉 Explanation:
+
+Combination must be unique
+Same student can take multiple courses, but not duplicate entry
+
+
+
+🔷 4. Add Primary Key to Existing Table
+
+👉 Purpose: Add PK after table is created
+
+ALTER TABLE Student
+ADD PRIMARY KEY (StudentID);
+
+👉 Explanation:
+
+Used when table already exists
+Column must not contain duplicates or NULLs
+
+
+
+🔷 5. Add Named Primary Key
+ALTER TABLE Student
+ADD CONSTRAINT PK_Student PRIMARY KEY (StudentID);
+
+👉 Explanation:
+
+Adds PK with custom name
+
+
+
+🔷 6. Drop Primary Key
+
+👉 Purpose: Remove PK constraint
+
+ALTER TABLE Student
+DROP PRIMARY KEY;
+
+👉 Explanation:
+
+Removes uniqueness restriction
+Syntax may vary (SQL Server uses constraint name)
+
+👉 SQL Server:
+
+ALTER TABLE Student
+DROP CONSTRAINT PK_Student;
+
+
+
+🔷 7. Primary Key with AUTO INCREMENT
+
+👉 Purpose: Automatically generate unique values
+
+MySQL:
+CREATE TABLE Student (
+    StudentID INT AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(50)
+);
+SQL Server:
+CREATE TABLE Student (
+    StudentID INT IDENTITY(1,1) PRIMARY KEY,
+    Name VARCHAR(50)
+);
+
+👉 Explanation:
+
+No need to manually insert ID
+Automatically increases
+
+
+
+🔷 8. Insert Data with Primary Key
+
+👉 Purpose: Add data respecting PK rules
+
+INSERT INTO Student (StudentID, Name)
+VALUES (1, 'Rahul');
+
+👉 Explanation:
+
+ID must be unique
+Duplicate will give error
+
+
+
+🔷 9. Insert Duplicate Primary Key (Error Case)
+INSERT INTO Student (StudentID, Name)
+VALUES (1, 'Amit');
+
+👉 Explanation:
+
+Fails because PK must be unique
+
+
+
+🔷 10. Insert NULL in Primary Key (Error Case)
+INSERT INTO Student (StudentID, Name)
+VALUES (NULL, 'Ravi');
+
+👉 Explanation:
+
+Not allowed → PK cannot be NULL
+
+
+
+🔷 11. Update Primary Key Value
+UPDATE Student
+SET StudentID = 2
+WHERE StudentID = 1;
+
+👉 Explanation:
+
+Allowed only if new value is unique
+Risky if used in relationships
+
+
+
+🔷 12. Primary Key with Foreign Key Relationship
+CREATE TABLE Orders (
+    OrderID INT PRIMARY KEY,
+    StudentID INT,
+    FOREIGN KEY (StudentID) REFERENCES Student(StudentID)
+);
+
+👉 Explanation:
+
+PK in one table becomes FK in another
+Maintains relationship
+
+
+
+🔷 13. Check Primary Key in Table
+
+👉 MySQL:
+DESCRIBE Student;
+
+👉 SQL Server:
+EXEC sp_help 'Student';
+
+👉 Explanation:
+Shows PK information
+
+
+🔥 Important Interview Points
+PK automatically creates clustered index (in most DBs)
+Only one PK per table
+Can be single or composite
+Cannot accept NULL
+Best choice: numeric + auto increment
+✅ Short Summary
+
+👉 PK = Unique + Not Null
+👉 Used for identity
+👉 Can be added, dropped, or combined
+👉 Used to create relationships
+
+
+
+
+
