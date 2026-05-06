@@ -1,0 +1,161 @@
+🔑 What is UNIQUE Key (Quick Recall)
+A UNIQUE Key ensures that all values in a column are different (no duplicates).
+
+
+👉 Key Points:
+
+No duplicate values allowed
+Can allow NULL (usually 1 NULL)
+Can have multiple UNIQUE keys in one table
+
+
+🔷 1. Create Table with UNIQUE Key
+
+👉 Purpose: Define UNIQUE at table creation
+
+CREATE TABLE Student (
+    StudentID INT PRIMARY KEY,
+    Email VARCHAR(100) UNIQUE,
+    Name VARCHAR(50)
+);
+
+👉 Explanation:
+
+Email must be unique
+Two students cannot have same email
+
+
+
+🔷 2. Create UNIQUE Key with Constraint Name
+
+👉 Purpose: Give name to UNIQUE constraint
+
+CREATE TABLE Student (
+    StudentID INT,
+    Email VARCHAR(100),
+    CONSTRAINT UQ_Email UNIQUE (Email)
+);
+
+👉 Explanation:
+
+UQ_Email is constraint name
+Helpful for modifying later
+
+
+
+🔷 3. Add UNIQUE Key to Existing Table
+
+👉 Purpose: Add UNIQUE after table creation
+
+ALTER TABLE Student
+ADD UNIQUE (Email);
+
+👉 Explanation:
+
+Existing data must be unique
+Otherwise query fails
+
+
+
+🔷 4. Add Named UNIQUE Key
+ALTER TABLE Student
+ADD CONSTRAINT UQ_Email UNIQUE (Email);
+
+👉 Explanation:
+
+Same as above but with name
+
+
+
+🔷 5. Drop UNIQUE Key
+
+👉 Purpose: Remove UNIQUE constraint
+
+MySQL:
+ALTER TABLE Student
+DROP INDEX UQ_Email;
+SQL Server:
+ALTER TABLE Student
+DROP CONSTRAINT UQ_Email;
+
+👉 Explanation:
+
+After removing → duplicates allowed
+
+
+
+🔷 6. Insert Valid Data
+INSERT INTO Student (StudentID, Email)
+VALUES (1, 'a@gmail.com');
+
+👉 Explanation:
+
+Works because email is unique
+
+
+
+🔷 7. Insert Duplicate Value (Error Case)
+INSERT INTO Student (StudentID, Email)
+VALUES (2, 'a@gmail.com');
+
+👉 Explanation:
+
+Fails → duplicate not allowed
+
+
+
+🔷 8. Insert NULL in UNIQUE Column
+INSERT INTO Student (StudentID, Email)
+VALUES (3, NULL);
+
+👉 Explanation:
+
+Allowed in most DBs (only one NULL)
+
+
+
+🔷 9. Update UNIQUE Column
+UPDATE Student
+SET Email = 'b@gmail.com'
+WHERE StudentID = 1;
+
+👉 Explanation:
+
+Allowed only if new value is unique
+
+
+
+🔷 10. Multiple UNIQUE Keys in One Table
+CREATE TABLE Student (
+    StudentID INT PRIMARY KEY,
+    Email VARCHAR(100) UNIQUE,
+    Phone VARCHAR(15) UNIQUE
+);
+
+👉 Explanation:
+Both Email and Phone must be unique
+
+
+
+🔥 Important Interview Points
+
+UNIQUE allows one NULL, PK does not
+Multiple UNIQUE keys allowed
+Automatically creates index
+Used for email, phone, username
+
+
+✅ Difference (VERY IMPORTANT)
+Feature	      Primary Key    	UNIQUE Key
+NULL Allowed	❌ No         	✅ Yes (1)
+Duplicate	     ❌ No         	❌ No
+Count       	1 per table 	Multiple allowed
+
+
+
+✅ Short Summary
+
+👉 UNIQUE = No duplicates
+👉 Allows NULL (unlike PK)
+👉 Can be used multiple times
+👉 Best for email, username
