@@ -1,0 +1,212 @@
+🔑 What is Foreign Key (Quick Recall)
+A Foreign Key is a column that links one table to another table’s Primary Key.
+
+👉 Purpose:
+
+Maintain relationship
+Ensure data integrity
+
+
+
+🔷 1. Create Table with Foreign Key
+
+👉 Purpose: Define FK at table creation
+
+CREATE TABLE Orders (
+    OrderID INT PRIMARY KEY,
+    StudentID INT,
+    FOREIGN KEY (StudentID) REFERENCES Student(StudentID)
+);
+
+👉 Explanation:
+
+StudentID in Orders refers to Student.StudentID
+You cannot insert a StudentID that doesn’t exist in Student table
+
+
+
+🔷 2. Create Foreign Key with Constraint Name
+
+👉 Purpose: Give FK a custom name
+
+CREATE TABLE Orders (
+    OrderID INT PRIMARY KEY,
+    StudentID INT,
+    CONSTRAINT FK_Student_Order FOREIGN KEY (StudentID)
+    REFERENCES Student(StudentID)
+);
+
+👉 Explanation:
+
+Naming helps when modifying or deleting constraint later
+
+
+
+🔷 3. Add Foreign Key to Existing Table
+
+👉 Purpose: Add FK after table creation
+
+ALTER TABLE Orders
+ADD FOREIGN KEY (StudentID)
+REFERENCES Student(StudentID);
+
+👉 Explanation:
+
+Used when table already exists
+Existing data must match parent table
+
+
+
+🔷 4. Add Named Foreign Key
+ALTER TABLE Orders
+ADD CONSTRAINT FK_Student_Order
+FOREIGN KEY (StudentID)
+REFERENCES Student(StudentID);
+
+👉 Explanation:
+
+Same as above but with constraint name
+
+
+
+🔷 5. Drop Foreign Key
+
+👉 Purpose: Remove FK constraint
+
+MySQL:
+ALTER TABLE Orders
+DROP FOREIGN KEY FK_Student_Order;
+SQL Server:
+ALTER TABLE Orders
+DROP CONSTRAINT FK_Student_Order;
+
+👉 Explanation:
+
+Removes relationship rule
+
+
+
+🔷 6. Insert Valid Foreign Key Data
+INSERT INTO Orders (OrderID, StudentID)
+VALUES (1, 101);
+
+👉 Explanation:
+
+Works only if StudentID = 101 exists in Student table
+
+
+
+🔷 7. Insert Invalid Foreign Key (Error Case)
+INSERT INTO Orders (OrderID, StudentID)
+VALUES (2, 999);
+
+👉 Explanation:
+
+Fails because 999 doesn’t exist in parent table
+
+
+
+🔷 8. Foreign Key with ON DELETE CASCADE
+
+👉 Purpose: Auto delete child records
+
+CREATE TABLE Orders (
+    OrderID INT PRIMARY KEY,
+    StudentID INT,
+    FOREIGN KEY (StudentID)
+    REFERENCES Student(StudentID)
+    ON DELETE CASCADE
+);
+
+👉 Explanation:
+
+If student is deleted → related orders also deleted
+
+
+
+🔷 9. Foreign Key with ON DELETE SET NULL
+
+👉 Purpose: Set FK to NULL when parent deleted
+
+FOREIGN KEY (StudentID)
+REFERENCES Student(StudentID)
+ON DELETE SET NULL;
+
+👉 Explanation:
+
+Keeps child record but removes link
+
+
+
+🔷 10. Foreign Key with ON UPDATE CASCADE
+
+👉 Purpose: Auto update FK when PK changes
+
+FOREIGN KEY (StudentID)
+REFERENCES Student(StudentID)
+ON UPDATE CASCADE;
+
+👉 Explanation:
+
+If StudentID changes → Orders table updates automatically
+
+
+
+🔷 11. Update Foreign Key Value
+UPDATE Orders
+SET StudentID = 102
+WHERE OrderID = 1;
+
+👉 Explanation:
+
+Allowed only if 102 exists in parent table
+
+
+
+🔷 12. Delete Parent Record (Restricted Case)
+DELETE FROM Student
+WHERE StudentID = 101;
+
+👉 Explanation:
+
+Will FAIL if child records exist (default behavior = RESTRICT)
+
+
+
+🔷 13. Check Foreign Key in Table
+
+
+👉 MySQL:
+SHOW CREATE TABLE Orders;
+
+👉 SQL Server:
+EXEC sp_help 'Orders';
+
+
+👉 Explanation:
+Shows FK details
+
+
+
+🔥 Important Interview Points
+
+FK creates relationship between tables
+Can have duplicate values
+Can allow NULL (optional)
+Prevents invalid data insertion
+Works with CASCADE, SET NULL, RESTRICT
+
+
+✅ Real-Life Example
+👉 Student Table (PK)
+👉 Orders Table (FK)
+
+➡ One student → many orders
+➡ FK maintains connection
+
+✅ Short Summary
+
+👉 FK = Relationship
+👉 Must match parent table PK
+👉 Prevents wrong data
+👉 Supports cascade actions
