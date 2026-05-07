@@ -1,0 +1,181 @@
+🔑 ALTERNATE KEY in SQL
+
+
+🔷 What is Alternate Key? (Quick Recall)
+An Alternate Key is a candidate key that is not selected as the Primary Key.
+
+👉 Key Points:
+
+Alternate key values must be unique
+Can uniquely identify records
+A table can have multiple alternate keys
+Candidate Key − Primary Key = Alternate Key
+
+
+🔥 Example Understanding
+
+Suppose table has:
+
+StudentID
+Email
+AadhaarNo
+
+All are unique.
+
+If:
+
+StudentID → Primary Key
+
+Then:
+
+Email → Alternate Key
+AadhaarNo → Alternate Key
+
+
+🔷 1. Create Table with Alternate Keys
+CREATE TABLE Student (
+    StudentID INT PRIMARY KEY,
+    Email VARCHAR(100) UNIQUE,
+    AadhaarNo VARCHAR(12) UNIQUE,
+    Name VARCHAR(50)
+);
+
+👉 Explanation:
+
+StudentID = Primary Key
+Email and AadhaarNo = Alternate Keys
+They are unique but not selected as PK
+
+
+
+🔷 2. Insert Valid Alternate Key Data
+INSERT INTO Student
+VALUES (1, 'a@gmail.com', '123456789012', 'Rahul');
+
+👉 Explanation:
+
+All unique values → insertion successful
+
+
+
+🔷 3. Insert Duplicate Alternate Key (Error Case)
+INSERT INTO Student
+VALUES (2, 'a@gmail.com', '987654321098', 'Amit');
+
+👉 Explanation:
+
+Fails because Email must remain unique
+
+
+
+🔷 4. Insert Duplicate Aadhaar (Error Case)
+INSERT INTO Student
+VALUES (3, 'b@gmail.com', '123456789012', 'Ravi');
+
+👉 Explanation:
+
+Duplicate Aadhaar not allowed
+
+
+
+🔷 5. Search Using Alternate Key
+SELECT * FROM Student
+WHERE Email = 'a@gmail.com';
+
+👉 Explanation:
+
+Alternate keys can also uniquely identify rows
+
+
+
+🔷 6. Update Alternate Key
+UPDATE Student
+SET Email = 'new@gmail.com'
+WHERE StudentID = 1;
+
+👉 Explanation:
+
+Allowed only if new email is unique
+
+
+
+🔷 7. Add Alternate Key to Existing Table
+ALTER TABLE Student
+ADD UNIQUE (Phone);
+
+👉 Explanation:
+
+Phone becomes another Alternate Key
+
+
+
+
+🔷 8. Add Named Alternate Key
+ALTER TABLE Student
+ADD CONSTRAINT UQ_Phone UNIQUE (Phone);
+
+👉 Explanation:
+
+Adds UNIQUE constraint with custom name
+
+
+
+
+🔷 9. Drop Alternate Key
+SQL Server:
+ALTER TABLE Student
+DROP CONSTRAINT UQ_Phone;
+MySQL:
+ALTER TABLE Student
+DROP INDEX UQ_Phone;
+
+👉 Explanation:
+
+Removes uniqueness rule
+
+
+
+
+🔷 10. Multiple Alternate Keys
+CREATE TABLE Employee (
+    EmpID INT PRIMARY KEY,
+    Email VARCHAR(100) UNIQUE,
+    PassportNo VARCHAR(20) UNIQUE,
+    Phone VARCHAR(15) UNIQUE
+);
+
+👉 Explanation:
+
+Email, PassportNo, and Phone are Alternate Keys
+
+
+
+
+🔥 Difference Between Candidate Key and Alternate Key
+Feature	Candidate Key	Alternate Key
+Unique	Yes	Yes
+Can Become PK	Yes	No
+Selected as PK	Maybe	No
+
+
+
+🔥 Important Interview Points
+Alternate Key = Candidate Key not chosen as PK
+Implemented using UNIQUE constraint
+Can have multiple alternate keys
+Used for Email, Phone, PassportNo
+
+
+✅ Real-Life Examples
+Table	Alternate Keys
+Student	Email, Aadhaar
+Employee	PassportNo, Phone
+User	Username, Email
+
+
+
+✅ Short Summary
+
+👉 Alternate Key = Backup unique key
+👉 Not selected as Primary Key
+👉 Must remain unique
