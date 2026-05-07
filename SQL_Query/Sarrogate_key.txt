@@ -1,0 +1,221 @@
+🔷 What is Surrogate Key?
+A Surrogate Key is a system-generated artificial key used to uniquely identify records.
+
+👉 Usually created using:
+
+AUTO_INCREMENT in MySQL
+IDENTITY in SQL Server
+
+👉 Mostly used as:
+
+Primary Key
+🔥 Example Idea
+StudentID	Name
+1	Rahul
+2	Amit
+
+👉 StudentID is Surrogate Key because:
+
+Auto generated
+No business meaning
+
+
+🔷 1. Create Table with Surrogate Key (MySQL)
+CREATE TABLE Student (
+    StudentID INT AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(50),
+    City VARCHAR(50)
+);
+
+👉 Explanation:
+
+AUTO_INCREMENT automatically generates IDs
+No need to manually insert StudentID
+StudentID becomes Surrogate Key
+
+
+🔷 2. Create Table with Surrogate Key (SQL Server)
+CREATE TABLE Student (
+    StudentID INT IDENTITY(1,1) PRIMARY KEY,
+    Name VARCHAR(50),
+    City VARCHAR(50)
+);
+
+👉 Explanation:
+
+IDENTITY(1,1) means:
+Start from 1
+Increase by 1
+Auto-generated key
+
+
+🔷 3. Insert Data Without ID
+INSERT INTO Student (Name, City)
+VALUES ('Rahul', 'Pune');
+
+👉 Explanation:
+
+Database automatically inserts StudentID
+
+Generated result:
+
+1 | Rahul | Pune
+
+
+🔷 4. Insert Multiple Records
+INSERT INTO Student (Name, City)
+VALUES 
+('Amit', 'Mumbai'),
+('Ravi', 'Nashik');
+
+👉 Explanation:
+
+IDs generated automatically:
+2
+3
+
+
+🔷 5. View All Data
+SELECT * FROM Student;
+
+👉 Explanation:
+
+Displays all auto-generated surrogate IDs
+
+
+
+🔷 6. Search Using Surrogate Key
+SELECT * FROM Student
+WHERE StudentID = 1;
+
+👉 Explanation:
+
+Surrogate Key uniquely identifies row
+
+
+
+🔷 7. Update Data Using Surrogate Key
+UPDATE Student
+SET City = 'Nagpur'
+WHERE StudentID = 2;
+
+👉 Explanation:
+
+Easily updates specific record using unique ID
+
+
+
+🔷 8. Delete Record Using Surrogate Key
+DELETE FROM Student
+WHERE StudentID = 3;
+
+👉 Explanation:
+
+Deletes exact record using generated key
+
+
+
+🔷 9. Set Starting AUTO_INCREMENT Value (MySQL)
+ALTER TABLE Student AUTO_INCREMENT = 100;
+
+👉 Explanation:
+
+Next generated ID starts from 100
+
+
+
+🔷 10. Reset Identity Value (SQL Server)
+DBCC CHECKIDENT ('Student', RESEED, 100);
+
+👉 Explanation:
+
+Resets identity counter
+
+Next ID becomes:
+
+101
+
+
+
+🔷 11. Insert Manual ID in SQL Server
+SET IDENTITY_INSERT Student ON;
+
+INSERT INTO Student (StudentID, Name, City)
+VALUES (200, 'Karan', 'Delhi');
+
+SET IDENTITY_INSERT Student OFF;
+
+👉 Explanation:
+
+Allows manual insertion into identity column temporarily
+
+
+
+🔷 12. Surrogate Key with Foreign Key
+CREATE TABLE Orders (
+    OrderID INT IDENTITY(1,1) PRIMARY KEY,
+    StudentID INT,
+    FOREIGN KEY (StudentID)
+    REFERENCES Student(StudentID)
+);
+
+👉 Explanation:
+
+Surrogate Key used in relationship
+StudentID links both tables
+
+
+
+🔷 13. Drop Surrogate Key
+SQL Server
+ALTER TABLE Student
+DROP CONSTRAINT PK_Student;
+MySQL
+ALTER TABLE Student
+DROP PRIMARY KEY;
+
+👉 Explanation:
+
+Removes Primary Key constraint
+
+
+
+🔥 Advantages of Surrogate Key
+
+✅ Fast indexing
+✅ Better performance
+✅ Stable values
+✅ Easier joins
+
+
+🔥 Disadvantages
+
+❌ No business meaning
+❌ Extra column needed
+
+
+
+🔥 Important Interview Points
+
+👉 Mostly integer type
+👉 Usually auto-generated
+👉 Preferred in large applications
+👉 Never changes
+👉 Best for relationships
+
+
+
+🔥 Difference Between Natural Key and Surrogate Key
+
+Feature	    Surrogate Key	    Natural Key
+Meaning	      Artificial     	Real-world
+Generated	     System	        User data
+Example      	StudentID	      Email
+
+
+✅ Short Summary
+
+👉 Surrogate Key = System-generated unique ID
+👉 Created using AUTO_INCREMENT or IDENTITY
+👉 Mostly used as Primary Key
+👉 Best for performance and relationships
