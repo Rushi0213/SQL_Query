@@ -1,0 +1,151 @@
+🔑 What is Candidate Key (Quick Recall)
+A Candidate Key is a column (or combination of columns) that can uniquely identify each row in a table.
+
+👉 Key Points:
+
+Must be unique
+Cannot contain NULL
+A table can have multiple candidate keys
+One candidate key becomes the Primary Key
+Remaining candidate keys become Alternate Keys
+
+
+🔷 1. Create Table with Candidate Keys
+
+👉 Purpose: Create columns that can uniquely identify records
+
+CREATE TABLE Student (
+    StudentID INT PRIMARY KEY,
+    Email VARCHAR(100) UNIQUE,
+    AadhaarNo VARCHAR(12) UNIQUE,
+    Name VARCHAR(50)
+);
+
+👉 Explanation:
+
+StudentID, Email, and AadhaarNo can all uniquely identify student
+These are candidate keys
+StudentID is selected as Primary Key
+
+
+
+🔷 2. Insert Valid Candidate Key Data
+INSERT INTO Student
+VALUES (1, 'a@gmail.com', '123456789012', 'Rahul');
+
+👉 Explanation:
+
+All candidate key values are unique
+Record inserts successfully
+
+
+
+🔷 3. Insert Duplicate Candidate Key (Error Case)
+INSERT INTO Student
+VALUES (2, 'a@gmail.com', '987654321098', 'Amit');
+
+👉 Explanation:
+
+Fails because Email must be unique
+
+
+
+🔷 4. Insert NULL in Candidate Key (Error Case)
+INSERT INTO Student
+VALUES (3, NULL, '456789123456', 'Ravi');
+
+👉 Explanation:
+
+Candidate keys should not contain NULL
+UNIQUE may allow NULL in some DBs, but true candidate key concept says NOT NULL + UNIQUE
+
+
+
+🔷 5. Multiple Candidate Keys in One Table
+
+👉 Purpose: Show more than one possible unique identifier
+
+CREATE TABLE Employee (
+    EmpID INT PRIMARY KEY,
+    Email VARCHAR(100) UNIQUE,
+    PassportNo VARCHAR(20) UNIQUE,
+    Phone VARCHAR(15) UNIQUE
+);
+
+👉 Explanation:
+
+EmpID, Email, PassportNo, and Phone are candidate keys
+Any one could become Primary Key
+
+
+
+🔷 6. Choosing Primary Key from Candidate Keys
+CREATE TABLE Employee (
+    Email VARCHAR(100) PRIMARY KEY,
+    PassportNo VARCHAR(20) UNIQUE,
+    Phone VARCHAR(15) UNIQUE
+);
+
+👉 Explanation:
+
+Email selected as PK
+PassportNo and Phone become Alternate Keys
+
+
+
+🔷 7. Update Candidate Key
+UPDATE Student
+SET Email = 'new@gmail.com'
+WHERE StudentID = 1;
+
+👉 Explanation:
+
+Allowed only if new email is unique
+
+
+
+🔷 8. Candidate Key with Composite Columns
+
+👉 Purpose: Candidate key can also be combination of columns
+
+CREATE TABLE Enrollment (
+    StudentID INT,
+    CourseID INT,
+    UNIQUE (StudentID, CourseID)
+);
+
+👉 Explanation:
+
+Combination acts as candidate key
+Duplicate combinations not allowed
+
+
+🔥 Real-Life Examples
+Table	Candidate Keys
+Student	StudentID, Email, Aadhaar
+Employee	EmpID, PassportNo
+User	Username, Email
+
+
+
+🔥 Important Interview Points
+Every Primary Key is a Candidate Key
+Not every Candidate Key is Primary Key
+Candidate key = UNIQUE + NOT NULL
+Table can have many candidate keys
+
+
+✅ Difference
+Feature	Candidate Key	Primary Key
+Count	Multiple	Only One
+NULL	Not Allowed	Not Allowed
+Unique	Yes	Yes
+Selected as Main Key	No	Yes
+
+
+✅ Short Summary
+
+👉 Candidate Key = Possible Primary Key
+👉 Multiple candidate keys allowed
+👉 One becomes PK
+👉 Others become Alternate Keys
