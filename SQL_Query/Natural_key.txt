@@ -1,0 +1,139 @@
+🔷 What is Natural Key?
+A Natural Key is a key created from real-world business data that already exists naturally.
+
+👉 It has meaningful information.
+👉 It is not system-generated.
+
+🔥 Real-Life Examples
+Natural KeyWhy?EmailUnique for each userAadhaar NumberUnique identityPassport NumberUnique person IDPhone NumberUsually unique
+
+🔷 Example Table
+EmailNameCitya@gmail.comRahulPune
+👉 Email is Natural Key because:
+
+
+Real-world meaningful data
+
+
+Uniquely identifies record
+
+
+
+🔷 1. Create Table with Natural Key
+CREATE TABLE Student (    Email VARCHAR(100) PRIMARY KEY,    Name VARCHAR(50),    City VARCHAR(50));
+
+👉 Explanation:
+Email acts as Primary Key
+
+Email is meaningful real-world data
+
+Therefore Email is Natural Key
+
+
+
+🔷 2. Create Natural Key with UNIQUE Constraint
+CREATE TABLE Student (    StudentID INT PRIMARY KEY,    Email VARCHAR(100) UNIQUE,    Name VARCHAR(50));
+
+👉 Explanation:
+
+StudentID = Surrogate Key
+Email = Natural Key
+UNIQUE prevents duplicates
+
+
+
+🔷 3. Insert Valid Data
+INSERT INTO StudentVALUES ('a@gmail.com', 'Rahul', 'Pune');
+
+👉 Explanation:
+
+Unique natural key inserted successfully
+
+
+
+🔷 4. Insert Duplicate Natural Key (Error Case)
+INSERT INTO StudentVALUES ('a@gmail.com', 'Amit', 'Mumbai');
+
+👉 Explanation:
+Duplicate Email not allowed
+Natural Key must remain unique
+
+
+
+🔷 5. Search Using Natural Key
+SELECT * FROM StudentWHERE Email = 'a@gmail.com';
+👉 Explanation:
+
+
+Natural Key uniquely identifies row
+
+
+
+🔷 6. Update Natural Key
+UPDATE StudentSET Email = 'new@gmail.com'WHERE Email = 'a@gmail.com';
+
+👉 Explanation:
+Allowed only if new email is unique
+
+
+
+🔷 7. Delete Record Using Natural Key
+DELETE FROM StudentWHERE Email = 'new@gmail.com';
+
+👉 Explanation:
+Deletes specific row using meaningful data
+
+
+
+🔷 8. Multiple Natural Keys
+CREATE TABLE Employee (    EmpID INT PRIMARY KEY,    PassportNo VARCHAR(20) UNIQUE,    Phone VARCHAR(15) UNIQUE);
+
+👉 Explanation:
+PassportNo and Phone are Natural Keys
+Both come from real-world data
+
+
+
+🔷 9. Natural Key with Foreign Key
+CREATE TABLE Orders (    OrderID INT PRIMARY KEY,    Email VARCHAR(100),    FOREIGN KEY (Email)    REFERENCES Student(Email));
+
+👉 Explanation:
+Natural Key used in table relationship
+Orders table references Email
+
+
+
+🔷 10. Composite Natural Key
+CREATE TABLE Employee (    FirstName VARCHAR(50),    LastName VARCHAR(50),    UNIQUE (FirstName, LastName));
+
+
+👉 Explanation:
+Combination acts as Natural Key
+Real-world data used for uniqueness
+
+
+
+🔥 Advantages of Natural Key
+✅ Meaningful data
+✅ No extra artificial column
+✅ Easy for users to understand
+
+🔥 Disadvantages
+❌ Real-world data can change
+❌ Long values reduce performance
+❌ Complex relationships
+
+🔥 Difference Between Natural Key and Surrogate Key
+FeatureNatural KeySurrogate KeyMeaningReal-worldArtificialGeneratedNoYesExampleEmailStudentID
+
+🔥 Important Interview Points
+👉 Natural Key comes from business data
+👉 Can act as Primary Key
+👉 Often used with UNIQUE constraint
+👉 Can change over time
+
+✅ Short Summary
+👉 Natural Key = Real-world meaningful key
+👉 Example: Email, Aadhaar, PassportNo
+👉 Not system-generated
+👉 Used for unique identification
