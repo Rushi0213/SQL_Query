@@ -1,0 +1,165 @@
+🔑 SUPER KEY in SQL
+
+🔷 What is Super Key? (Quick Recall)
+A Super Key is a column or combination of columns that can uniquely identify each row in a table.
+
+👉 Key Points:
+
+Must uniquely identify records
+Can contain extra unnecessary columns
+Every Candidate Key is a Super Key
+Super Key may have additional columns
+
+🔥 Example Understanding
+
+Suppose table has:
+
+StudentID	   Email	        Name
+1	          a@gmail.com     Rahul
+
+
+Possible Super Keys:
+
+StudentID ✅
+Email ✅
+StudentID + Name ✅
+Email + Name ✅
+
+👉 Because all combinations still uniquely identify record.
+
+🔷 1. Create Table for Super Key Concept
+CREATE TABLE Student (
+    StudentID INT PRIMARY KEY,
+    Email VARCHAR(100) UNIQUE,
+    Name VARCHAR(50)
+);
+
+👉 Explanation:
+
+StudentID uniquely identifies records
+Email also uniquely identifies records
+Both can act as Super Keys
+
+
+
+🔷 2. Insert Valid Data
+INSERT INTO Student
+VALUES (1, 'a@gmail.com', 'Rahul');
+
+👉 Explanation:
+
+Unique values inserted successfully
+
+
+
+
+🔷 3. Super Key Using Single Column
+SELECT * FROM Student
+WHERE StudentID = 1;
+
+👉 Explanation:
+
+StudentID uniquely identifies one row
+Therefore it acts as Super Key
+
+
+
+🔷 4. Super Key Using Another Unique Column
+SELECT * FROM Student
+WHERE Email = 'a@gmail.com';
+
+👉 Explanation:
+
+Email also uniquely identifies record
+So Email is also Super Key
+
+
+
+🔷 5. Super Key Using Multiple Columns
+SELECT * FROM Student
+WHERE StudentID = 1
+AND Name = 'Rahul';
+
+👉 Explanation:
+
+Combination uniquely identifies row
+Even though Name is unnecessary
+Still considered Super Key
+
+
+
+🔷 6. Create Composite Super Key
+CREATE TABLE Employee (
+    EmpID INT,
+    Email VARCHAR(100),
+    Name VARCHAR(50),
+    UNIQUE (EmpID, Email)
+);
+
+👉 Explanation:
+
+Combination of EmpID + Email acts as Super Key
+
+
+
+🔷 7. Insert Duplicate Super Key (Error Case)
+INSERT INTO Student
+VALUES (1, 'b@gmail.com', 'Amit');
+
+👉 Explanation:
+
+Fails because StudentID already exists
+Super Key must remain unique
+
+
+
+🔷 8. Update Super Key Value
+UPDATE Student
+SET Email = 'new@gmail.com'
+WHERE StudentID = 1;
+
+👉 Explanation:
+
+Allowed if new value remains unique
+
+
+
+🔷 9. Super Key with Extra Columns
+SELECT * FROM Student
+WHERE StudentID = 1
+AND Email = 'a@gmail.com'
+AND Name = 'Rahul';
+
+👉 Explanation:
+
+Extra columns added unnecessarily
+Still uniquely identifies row
+Therefore still Super Key
+
+
+🔥 Difference Between Super Key and Candidate Key
+Feature	Super Key	Candidate Key
+Unique	Yes	Yes
+Extra Columns Allowed	Yes	No
+Minimal	No	Yes
+
+
+
+🔥 Important Interview Points
+Every Candidate Key is Super Key
+Super Key may contain extra columns
+Candidate Key = Minimal Super Key
+Used for unique identification
+
+
+✅ Real-Life Example
+Data	Super Key?
+StudentID	✅
+Email	✅
+StudentID + Name	✅
+Email + Phone	✅
+✅ Short Summary
+
+👉 Super Key uniquely identifies rows
+👉 Can contain unnecessary columns
+👉 Candidate Key is smallest Super Key
