@@ -1,0 +1,229 @@
+Indexes in SQL are different types based on how data is stored and searched.
+
+1. Primary Index / Primary Key Index
+
+Created automatically when you create a Primary Key.
+
+Features:
+
+Unique values only
+No NULL values
+Mostly clustered index by default
+
+Used for:
+
+ID columns
+EmployeeId
+StudentId
+
+Example:
+
+Id
+
+
+2. Clustered Index
+
+Physically sorts table data.
+
+Features:
+
+Actual rows stored in sorted order
+Only ONE clustered index per table
+Faster for range searches
+
+Example:
+
+1
+2
+3
+4
+5
+
+Data itself becomes sorted.
+
+
+
+3. Non-Clustered Index
+
+Creates separate index structure.
+
+Features:
+
+Does not change actual table order
+Multiple allowed
+Stores pointers to rows
+
+Mostly used on:
+
+Name
+Email
+City
+
+
+
+4. Unique Index
+
+Does not allow duplicate values.
+
+Features:
+
+Prevents duplicate data
+Allows fast searching
+
+Mostly used on:
+
+Email
+Username
+Aadhaar number
+
+Example:
+
+rushi@gmail.com
+
+cannot repeat.
+
+
+
+5. Composite Index
+
+Index created on multiple columns.
+
+Features:
+
+Improves performance when multiple columns used together
+
+Example:
+
+FirstName + LastName
+
+
+
+6. Full-Text Index
+
+Used for searching large text data.
+
+Features:
+
+Searches words/sentences
+Better than LIKE for huge text
+
+Mostly used in:
+
+Google-like search
+Blogs
+Article systems
+
+Example:
+
+search "hotel management"
+
+
+
+7. Spatial Index
+
+Used for geographical/location data.
+
+Features:
+
+Works with maps and coordinates
+Used in GIS systems
+
+Mostly used in:
+
+Google Maps
+Food delivery apps
+Location tracking
+
+Example:
+
+Latitude and Longitude
+
+
+
+8. XML Index
+
+Used for XML data type.
+
+Features:
+
+Speeds up XML queries
+
+Mostly used when XML data stored in SQL Server.
+
+
+
+9. Bitmap Index
+
+Mostly used in data warehouses.
+
+Features:
+
+Good for low-cardinality data
+Fast analytical queries
+
+Example columns:
+
+Gender
+Status
+
+Few unique values.
+
+
+
+10. Hash Index
+
+Uses hash table for searching.
+
+Features:
+
+Very fast equality search
+Mostly used in memory-optimized tables
+
+
+
+11. Filtered Index
+
+Index only on specific rows.
+
+Features:
+
+Smaller index size
+Better performance
+
+Example:
+
+only active users
+
+
+
+12. Columnstore Index
+
+Stores data column-wise instead of row-wise.
+
+Features:
+
+Very fast analytics
+Used in BI/reporting systems
+
+Mostly used in:
+
+Big data
+Reports
+Data warehouse
+
+Easy Interview Summary
+
+Index Type     	Main Purpose
+Primary        	Unique identification
+Clustered      	Sort actual data
+Non-Clustered 	Separate fast lookup
+Unique         	Prevent duplicates
+Composite     	Multiple columns
+Full-Text	     Text searching
+Spatial	       Map/location data
+XML	          XML searching
+Bitmap       	Data warehouse
+Hash	        Fast equality search
+Filtered    	Specific rows only
+Columnstore	Analytics/reporting
+
