@@ -1,0 +1,282 @@
+TOP Clause in SQL
+The TOP clause is used to limit the number of rows returned from a table.
+
+
+It is mostly used with:
+
+SELECT
+ORDER BY
+Aggregate queries
+Joins
+Conditions
+
+Syntax of TOP Clause
+
+SELECT TOP number column_name
+FROM table_name;
+
+Create Table Example
+
+CREATE TABLE Employee
+(
+    Id INT PRIMARY KEY,
+    Name VARCHAR(50),
+    Department VARCHAR(50),
+    Salary INT,
+    City VARCHAR(50)
+);
+
+
+Insert Values
+INSERT INTO Employee VALUES
+(1,'Rahul','IT',50000,'Pune'),
+(2,'Amit','HR',30000,'Mumbai'),
+(3,'Sneha','IT',70000,'Delhi'),
+(4,'Neha','Sales',45000,'Pune'),
+(5,'Karan','HR',35000,'Mumbai'),
+(6,'Rohit','IT',80000,'Delhi'),
+(7,'Priya','Sales',60000,'Pune');
+
+
+1. TOP Basic Query
+
+Query
+
+SELECT TOP 3 *
+FROM Employee;
+
+Explanation
+Returns only first 3 rows from Employee table.
+
+
+2. TOP with Specific Columns
+
+Query
+
+SELECT TOP 2 Name, Salary
+FROM Employee;
+
+Explanation
+Returns first 2 rows with only Name and Salary columns.
+
+
+3. TOP with ORDER BY
+
+Query
+
+SELECT TOP 3 *
+FROM Employee
+ORDER BY Salary DESC;
+
+Explanation
+Returns top 3 employees with highest salary.
+DESC means highest to lowest.
+
+
+4. TOP with ASC
+
+Query
+
+SELECT TOP 2 *
+FROM Employee
+ORDER BY Salary ASC;
+
+Explanation
+Returns employees having lowest salary.
+
+
+5. TOP with WHERE Clause
+
+Query
+
+SELECT TOP 2 *
+FROM Employee
+WHERE Department='IT';
+
+Explanation
+Returns first 2 employees from IT department.
+
+
+6. TOP with DISTINCT
+Query
+SELECT DISTINCT TOP 3 City
+FROM Employee;
+
+Explanation
+Returns unique first 3 cities.
+
+7. TOP with Percentage
+
+Query
+
+SELECT TOP 50 PERCENT *
+FROM Employee;
+
+Explanation
+Returns 50% rows from table.
+If table has 10 rows → returns 5 rows.
+
+
+8. TOP with TIES
+
+Query
+
+SELECT TOP 3 WITH TIES *
+FROM Employee
+ORDER BY Salary DESC;
+
+Explanation
+Returns top 3 rows.
+If another row has same salary as 3rd row, it also gets included.
+
+
+9. TOP with Aggregate Function
+
+Query
+
+SELECT TOP 1 Department, COUNT(*) AS TotalEmployee
+FROM Employee
+GROUP BY Department
+ORDER BY COUNT(*) DESC;
+
+Explanation
+Returns department with highest employees.
+
+
+10. TOP with JOIN
+
+Create Department Table
+
+CREATE TABLE Department
+(
+    DeptName VARCHAR(50),
+    Manager VARCHAR(50)
+);
+
+Insert Values
+INSERT INTO Department VALUES
+('IT','Ramesh'),
+('HR','Suresh'),
+('Sales','Mahesh');
+
+
+Query
+
+SELECT TOP 3 E.Name, E.Salary, D.Manager
+FROM Employee E
+INNER JOIN Department D
+ON E.Department = D.DeptName;
+
+Explanation
+Returns first 3 joined rows from both tables.
+
+
+11. TOP with LIKE
+Query
+SELECT TOP 2 *
+FROM Employee
+WHERE Name LIKE 'R%';
+
+Explanation
+Returns first 2 employees whose name starts with R.
+
+
+12. TOP with IN Operator
+Query
+SELECT TOP 3 *
+FROM Employee
+WHERE City IN ('Pune','Delhi');
+
+Explanation
+Returns first 3 employees from Pune or Delhi.
+
+
+13. TOP with AND Operator
+
+Query
+
+SELECT TOP 2 *
+FROM Employee
+WHERE Department='IT'
+AND Salary > 60000;
+
+Explanation
+Returns first 2 IT employees having salary greater than 60000.
+
+
+14. TOP with Alias Name
+
+Query
+
+SELECT TOP 3
+Name AS Employee_Name,
+Salary AS Employee_Salary
+FROM Employee;
+
+Explanation
+Uses alias names with TOP clause.
+
+
+15. TOP with Subquery
+
+Query
+
+SELECT *
+FROM
+(
+   SELECT TOP 3 *
+   FROM Employee
+   ORDER BY Salary DESC
+) AS TopEmployee;
+
+Explanation
+Inner query selects top 3 highest salary employees.
+Outer query displays result.
+
+
+Important Notes
+
+Point	Explanation
+
+TOP	Limits rows
+TOP + ORDER BY	Gives highest/lowest records
+TOP PERCENT	Returns percentage rows
+WITH TIES	Includes duplicate matching rows
+Mostly used in	Reports and dashboards
+Difference Between TOP and LIMIT
+TOP	LIMIT
+
+Used in SQL Server	Used in MySQL
+Syntax: TOP 5	Syntax: LIMIT 5
+
+Example:
+
+-- SQL Server
+SELECT TOP 5 * FROM Employee;
+
+-- MySQL
+SELECT * FROM Employee LIMIT 5;
+Real Interview Questions
+
+
+Q1. Find highest salary employee
+SELECT TOP 1 *
+FROM Employee
+ORDER BY Salary DESC;
+
+
+Q2. Find second highest salary
+SELECT TOP 1 Salary
+FROM
+(
+   SELECT TOP 2 Salary
+   FROM Employee
+   ORDER BY Salary DESC
+) AS Temp
+ORDER BY Salary ASC;
+
+
+Q3. Find lowest salary employee
+SELECT TOP 1 *
+FROM Employee
+ORDER BY Salary ASC;
