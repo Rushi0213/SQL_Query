@@ -1,0 +1,289 @@
+Window Function in SQL Server
+
+A Window Function performs calculations on a set of rows related to the current row without grouping the rows into one output.
+
+It works on a “window” (group of rows).
+
+Simple Understanding
+
+Suppose you have employee salaries.
+
+Normally:
+
+SELECT SUM(Salary) FROM Employee
+
+This gives one total value.
+
+But Window Function gives:
+
+total salary
+rank
+average
+previous row value
+next row value
+
+for every row individually.
+
+Main Feature of Window Function
+
+Unlike GROUP BY:
+
+GROUP BY reduces rows
+Window Function keeps all rows
+Basic Syntax
+Function_Name() OVER(
+    PARTITION BY column
+    ORDER BY column
+)
+
+Meaning of Each Part
+
+Part	Meaning
+
+OVER()	Makes function a window function
+PARTITION BY	Divides rows into groups
+ORDER BY	Defines order inside group
+
+Example Table
+
+Id	Name	Department	Salary
+1	Rushi	IT	50000
+2	Amit	HR	30000
+3	Neha	IT	70000
+4	Rahul	HR	35000
+
+
+How Window Function Thinks
+
+If we use:
+
+SUM(Salary) OVER()
+
+SQL:
+
+Takes all rows
+Calculates total salary
+Shows total beside every row
+PARTITION BY
+
+PARTITION BY creates groups.
+
+Example:
+
+IT employees together
+HR employees together
+
+Like mini-groups inside table.
+
+ORDER BY in Window Function
+
+Defines row order inside partition.
+
+Used for:
+
+Rank
+Running total
+Row numbering
+Types of Window Functions
+
+
+1. Aggregate Window Functions
+
+Normal aggregate functions used with OVER().
+
+Examples:
+
+SUM()
+AVG()
+COUNT()
+MIN()
+MAX()
+
+
+
+2. Ranking Functions
+
+Used to rank rows.
+
+Functions:
+
+ROW_NUMBER()
+RANK()
+DENSE_RANK()
+NTILE()
+
+
+
+3. Value Functions
+
+Access nearby rows.
+
+Functions:
+
+LEAD()
+LAG()
+FIRST_VALUE()
+LAST_VALUE()
+
+
+Important Functions Explanation
+ROW_NUMBER()
+
+Gives unique row number.
+
+Example result:
+
+Name	RowNumber
+Rushi	1
+Neha	2
+
+Even duplicate salaries get different numbers.
+
+RANK()
+
+Provides ranking.
+
+If two salaries same:
+
+Salary	Rank
+70000	1
+70000	1
+50000	3
+
+Rank skips numbers.
+
+DENSE_RANK()
+
+Same as rank but no skipping.
+
+Salary	DenseRank
+70000	1
+70000	1
+50000	2
+NTILE()
+
+Divides rows into groups.
+
+Example:
+
+Top 25%
+Bottom 25%
+
+Useful in analytics.
+
+LEAD()
+
+Gets next row value.
+
+Example:
+Current salary → next employee salary.
+
+LAG()
+
+Gets previous row value.
+
+Useful for:
+
+comparing old and new values
+sales comparison
+FIRST_VALUE()
+
+Returns first row value in partition.
+
+LAST_VALUE()
+
+Returns last row value in partition.
+
+Difference Between GROUP BY and Window Function
+
+GROUP BY	                Window Function
+Reduces rows              	Keeps rows
+One result per group     	Result for every row
+Cannot show detail rows  	Shows detail rows
+
+
+Real-Life Use Cases
+Salary Ranking
+
+Find highest-paid employees.
+
+Running Total
+
+Bank balance calculation.
+
+Compare Previous Month Sales
+
+Using LAG().
+
+Pagination
+
+Using ROW_NUMBER().
+
+Top N Employees Per Department
+
+Using ranking functions.
+
+Why Companies Use Window Functions
+
+Because they are:
+
+Fast
+Powerful
+Easy for analytics
+Better than complex subqueries
+
+Mostly used in:
+
+Reports
+Dashboards
+Data analysis
+Banking systems
+Payroll systems
+Important Concept
+
+Window function works:
+
+after WHERE
+before final ORDER BY
+
+
+Interview Questions
+
+1. What is Window Function?
+
+A function that performs calculation across related rows without collapsing rows.
+
+2. Why use OVER()?
+
+To convert normal function into window function.
+
+3. Difference between RANK and DENSE_RANK?
+
+RANK	DENSE_RANK
+Skips rank numbers	No skipping
+
+
+4. Difference between GROUP BY and Window Function?
+
+GROUP BY combines rows.
+Window function keeps rows.
+
+
+
+Easy Memory Trick
+
+Think like this:
+
+GROUP BY → Compress rows
+WINDOW FUNCTION → Analyze rows while keeping them visible
+
+
+Most Important Point
+
+Window Functions are mainly used for:
+
+Ranking
+Analytics
+Comparison
+Running calculations
+Reporting systems
