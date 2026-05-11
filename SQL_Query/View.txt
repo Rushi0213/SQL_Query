@@ -1,0 +1,293 @@
+VIEW in SQL Server
+
+A VIEW is a virtual table in SQL.
+It stores a SQL query, not actual data.
+
+When we access a view, SQL runs the stored query and shows data.
+
+Why Use VIEW?
+
+Hide complex queries
+Security (show limited columns)
+Reuse query again and again
+Simplify joins
+Show customized data
+
+Syntax of VIEW
+
+CREATE VIEW view_name
+AS
+SELECT column1,column2
+FROM table_name;
+
+Create Sample Table
+
+CREATE TABLE Employee
+(
+    Id INT PRIMARY KEY,
+    Name VARCHAR(50),
+    Department VARCHAR(50),
+    Salary INT,
+    City VARCHAR(50)
+);
+
+Insert Data
+
+INSERT INTO Employee VALUES
+(1,'Rushi','IT',50000,'Pune'),
+(2,'Amit','HR',30000,'Mumbai'),
+(3,'Neha','IT',70000,'Pune'),
+(4,'Kiran','Sales',40000,'Delhi'),
+(5,'Rahul','HR',35000,'Pune');
+
+
+1. Simple VIEW
+
+CREATE VIEW ITEmployees
+AS
+SELECT *
+FROM Employee
+WHERE Department='IT';
+
+Run View
+
+SELECT * FROM ITEmployees;
+Explanation
+
+This view only shows IT department employees.
+
+
+
+2. VIEW with Specific Columns
+CREATE VIEW EmployeeBasicInfo
+AS
+SELECT Id,Name,City
+FROM Employee;
+
+SELECT * FROM EmployeeBasicInfo;
+
+Explanation
+Only selected columns are visible.
+
+
+
+3. VIEW with WHERE Condition
+CREATE VIEW PuneEmployees
+AS
+SELECT *
+FROM Employee
+WHERE City='Pune';
+
+SELECT * FROM PuneEmployees;
+
+
+
+4. VIEW with ORDER BY
+
+ORDER BY directly inside VIEW is not allowed normally.
+
+Use TOP 100 PERCENT.
+
+CREATE VIEW EmployeeSalaryView
+AS
+SELECT TOP 100 PERCENT *
+FROM Employee
+ORDER BY Salary DESC;
+
+
+5. VIEW with Aggregate Function
+CREATE VIEW DepartmentSalary
+AS
+SELECT Department,
+SUM(Salary) AS TotalSalary
+FROM Employee
+GROUP BY Department;
+
+SELECT * FROM DepartmentSalary;
+
+Explanation
+Shows total salary department-wise.
+
+
+
+6. VIEW with JOIN
+
+Create Another Table
+
+CREATE TABLE Department
+(
+    DeptId INT,
+    DeptName VARCHAR(50),
+    Manager VARCHAR(50)
+);
+
+Insert Data
+
+INSERT INTO Department VALUES
+(1,'IT','Ramesh'),
+(2,'HR','Suresh'),
+(3,'Sales','Mahesh');
+
+
+JOIN VIEW
+
+CREATE VIEW EmployeeDepartmentView
+AS
+SELECT 
+e.Name,
+e.Department,
+d.Manager
+FROM Employee e
+INNER JOIN Department d
+ON e.Department=d.DeptName;
+
+SELECT * FROM EmployeeDepartmentView;
+
+Explanation
+Combines data from two tables.
+
+
+
+7. Update Data Using VIEW
+UPDATE ITEmployees
+SET Salary=80000
+WHERE Id=1;
+
+Explanation
+Data updates in original table.
+
+
+
+8. Insert Data Using VIEW
+INSERT INTO EmployeeBasicInfo(Id,Name,City)
+VALUES(6,'Vikas','Nagpur');
+
+Explanation
+Inserted into original table.
+
+
+
+9. Delete Data Using VIEW
+DELETE FROM ITEmployees
+WHERE Id=3;
+
+Explanation
+Deletes from original table.
+
+
+
+10. ALTER VIEW
+
+Used to modify existing view.
+
+ALTER VIEW ITEmployees
+AS
+SELECT Name,Salary
+FROM Employee
+WHERE Department='IT';
+
+SELECT * FROM ITEmployees;
+
+
+
+11. DROP VIEW
+
+Delete view permanently.
+
+DROP VIEW ITEmployees;
+
+
+
+12. VIEW with DISTINCT
+CREATE VIEW UniqueCities
+AS
+SELECT DISTINCT City
+FROM Employee;
+
+
+
+13. VIEW with TOP
+CREATE VIEW TopEmployees
+AS
+SELECT TOP 3 *
+FROM Employee
+ORDER BY Salary DESC;
+
+
+
+14. VIEW with BETWEEN
+CREATE VIEW MediumSalaryEmployees
+AS
+SELECT *
+FROM Employee
+WHERE Salary BETWEEN 30000 AND 60000;
+
+
+
+15. VIEW with LIKE
+CREATE VIEW NameStartsWithR
+AS
+SELECT *
+FROM Employee
+WHERE Name LIKE 'R%';
+
+
+Advantages of VIEW
+
+Advantage	Explanation
+
+Security	Hide sensitive columns
+Simple Query	Avoid writing long query
+Reusable	Use again anytime
+Data Abstraction	User sees only needed data
+Complex Joins	Simplify joins
+Disadvantages of VIEW
+Disadvantage	Explanation
+Slow sometimes	Complex view reduces performance
+Cannot always update	Some views are read-only
+Dependency	Table changes may affect view
+
+
+Important Interview Questions
+
+
+1. What is VIEW?
+
+A virtual table created using SQL query.
+
+
+2. Does VIEW store data?
+
+No, it stores only SQL query.
+
+
+3. Difference between Table and View?
+Table	View
+Stores data	Stores query
+Physical object	Virtual object
+Takes memory	Less memory
+
+
+4. Can we update VIEW?
+
+Yes, simple views can be updated.
+
+
+5. Can VIEW contain JOIN?
+
+Yes.
+
+Most Important Point
+
+Whenever data changes in original table,
+VIEW automatically shows updated data.
+
+Example:
+
+UPDATE Employee
+SET Salary=90000
+WHERE Id=1;
+
+SELECT * FROM ITEmployees;
+
+The updated salary appears automatically.
